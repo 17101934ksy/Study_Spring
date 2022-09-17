@@ -2,6 +2,7 @@ package toy1.toy1.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import toy1.toy1.domain.Member;
 import toy1.toy1.repository.MemberRepository;
 import toy1.toy1.repository.MemoryMemberRepository;
@@ -9,7 +10,7 @@ import toy1.toy1.repository.MemoryMemberRepository;
 import java.util.List;
 import java.util.Optional;
 
-
+@Transactional
 public class MemberService {
 
     private final MemberRepository memberRepository;
@@ -26,7 +27,6 @@ public class MemberService {
         // 같은 이름이 있는 중복 회원x
 
         validateDuplicateMember(member); //중복 회원 검증
-
         memberRepository.save(member);
         return member.getId();
     }
