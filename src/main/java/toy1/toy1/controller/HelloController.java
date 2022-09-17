@@ -6,6 +6,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Controller
 public class HelloController {
 
@@ -27,12 +30,35 @@ public class HelloController {
         return "hello" + name;
     }
 
+    @GetMapping("hello-test")
+    @ResponseBody
+    public String helloTest(@RequestParam("name") String name) { return "testest" + name; }
+
+
+
     @GetMapping("hello-api")
     @ResponseBody
     public Hello helloApi(@RequestParam("name") String name){
         Hello hello = new Hello();
         hello.setName(name);
         return hello;
+    }
+
+    @GetMapping("hello-api2")
+    @ResponseBody
+    public Hello helloapi2(@RequestParam("name") String name){
+        Hello hello = new Hello();
+        hello.setName(name);
+        return hello;
+    }
+
+    @GetMapping("hello-api3")
+    @ResponseBody
+    public List helloapi3(@RequestParam("test") int forInstance){
+        ForMake forMake = new ForMake();
+        forMake.setForInstance(forInstance);
+        List<Integer> list = forMake.makeFor();
+        return list;
     }
 
     static class Hello {
@@ -44,6 +70,21 @@ public class HelloController {
 
         public void setName(String name) {
             this.name = name;
+        }
+    }
+
+    static class ForMake{
+
+        private int forInstance;
+
+        public int getforInstance() { return forInstance; }
+
+        public void setForInstance(int forInstance) { this.forInstance = forInstance;}
+
+        public List makeFor(){
+            List<Integer> list = new ArrayList<Integer>();
+            for (int i=0; i<forInstance; i++){ list.add(i); }
+            return list;
         }
     }
 

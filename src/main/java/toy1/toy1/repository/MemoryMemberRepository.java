@@ -1,15 +1,18 @@
-package toy1.toy1.domain;
+package toy1.toy1.repository;
+
+import toy1.toy1.domain.Member;
+import toy1.toy1.repository.MemberRepository;
 
 import java.util.*;
 
-public class MemoryMemberRepository implements MemberRepository{
+public class MemoryMemberRepository implements MemberRepository {
 
     private static Map<Long, Member> store = new HashMap<>();
-    private static long sequense = 0L;
+    private static long sequence = 0L;
 
     @Override
     public Member save(Member member) {
-        member.setId(++sequense);
+        member.setId(++sequence);
         store.put(member.getId(), member);
         return member;
     }
@@ -31,8 +34,7 @@ public class MemoryMemberRepository implements MemberRepository{
         return new ArrayList<>(store.values());
     }
 
-    public void clearStore(){
+    public void clearStore() {
         store.clear();
     }
-
 }
