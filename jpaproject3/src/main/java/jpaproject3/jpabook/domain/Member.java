@@ -1,6 +1,7 @@
 package jpaproject3.jpabook.domain;
-
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "member")
@@ -16,6 +17,14 @@ public class Member {
     @Column(length = 30)
     private String street;
     private String zipcode;
+
+    @OneToOne
+    @JoinColumn(name="lock_id", unique = true)
+    private Locker locker;
+
+    @OneToMany(mappedBy = "member")
+    private List<MemberProduct> memberProducts = new ArrayList<>();
+
 
     public Member(){}
 
