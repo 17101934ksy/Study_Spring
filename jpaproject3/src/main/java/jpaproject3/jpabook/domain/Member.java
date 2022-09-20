@@ -1,11 +1,12 @@
 package jpaproject3.jpabook.domain;
 import javax.persistence.*;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
 @Entity
 @Table(name = "member")
-public class Member {
+public class Member extends BaseEntity{
 
     @Id @GeneratedValue
     @Column(name = "member_id")
@@ -24,7 +25,6 @@ public class Member {
 
     @OneToMany(mappedBy = "member")
     private List<MemberProduct> memberProducts = new ArrayList<>();
-
 
     public Member(){}
 

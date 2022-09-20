@@ -1,10 +1,14 @@
 package jpaproject3.jpabook.domain;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "item")
-public class Item {
+@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
+@DiscriminatorColumn
+public abstract class Item extends BaseEntity{
 
     @Id @GeneratedValue
     @Column(name="item_id")
@@ -14,6 +18,8 @@ public class Item {
     private Integer price;
     private Integer stuckQuantity;
 
+    @ManyToMany(mappedBy = "items")
+    private List<Category> categories = new ArrayList<>();
     public Item(){}
 
     public Item(String name, Integer price, Integer stuckQuantity){

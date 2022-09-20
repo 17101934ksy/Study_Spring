@@ -23,45 +23,63 @@ public class Main {
         tx.begin();
 
         try{
-            Member member1 = new Member("koseyun", "kkk", "lll");
-            em.persist(member1);
+            Member member = new Member();
+            member.setName("kim");
+            member.setCreatedDate(LocalDateTime.now());
+            member.setCreatedBy("user");
 
-            Member member2 = new Member("kose11yun", "kkk", "lll");
-            em.persist(member2);
+            em.persist(member);
 
-            Item item1 = new Item("banana", 1700, 10);
-            Item item2 = new Item("apple", 4000, 10);
-            Item item3 = new Item("watermelon", 6000, 10);
-            Item item4 = new Item("melon", 3400, 10);
-
-            em.persist(item1);
-            em.persist(item2);
-            em.persist(item3);
-            em.persist(item4);
+            Movie movie = new Movie();
+            movie.setName("movie1");
+            movie.setActor("test");
+            movie.setDirector("test");
+            em.persist(movie);
 
             em.flush();
             em.clear();
 
-            Member member = em.find(Member.class, member2.getId());
+            em.find(Movie.class, movie.getItemId());
 
-            Orders order1 = new Orders(member, LocalDateTime.now(), OrderStatus.ORDER);
-
-            OrderItem orderItem1 = new OrderItem(order1, item1, item1.getPrice() * item1.getStuckQuantity(), 5);
-            em.persist(orderItem1);
-
-            order1.addOrderItemList(orderItem1);
-
-            em.persist(order1);
-            em.flush();
-            em.clear();
-
-            Orders findOrder = em.find(Orders.class, order1.getOrderId());
-
-            System.out.println("===========================");
-            System.out.println(member.getName());
-            System.out.println(item1.getPrice() * item1.getStuckQuantity());
-            System.out.println((findOrder.getOrderItemList()).get(0).getItem().getName());
-            System.out.println("===========================");
+//            Member member1 = new Member("koseyun", "kkk", "lll");
+//            em.persist(member1);
+//
+//            Member member2 = new Member("kose11yun", "kkk", "lll");
+//            em.persist(member2);
+//
+//            Item item1 = new Item("banana", 1700, 10);
+//            Item item2 = new Item("apple", 4000, 10);
+//            Item item3 = new Item("watermelon", 6000, 10);
+//            Item item4 = new Item("melon", 3400, 10);
+//
+//            em.persist(item1);
+//            em.persist(item2);
+//            em.persist(item3);
+//            em.persist(item4);
+//
+//            em.flush();
+//            em.clear();
+//
+//            Member member = em.find(Member.class, member2.getId());
+//
+//            Orders order1 = new Orders(member, LocalDateTime.now(), OrderStatus.ORDER);
+//
+//            OrderItem orderItem1 = new OrderItem(order1, item1, item1.getPrice() * item1.getStuckQuantity(), 5);
+//            em.persist(orderItem1);
+//
+//            order1.addOrderItemList(orderItem1);
+//
+//            em.persist(order1);
+//            em.flush();
+//            em.clear();
+//
+//            Orders findOrder = em.find(Orders.class, order1.getOrderId());
+//
+//            System.out.println("===========================");
+//            System.out.println(member.getName());
+//            System.out.println(item1.getPrice() * item1.getStuckQuantity());
+//            System.out.println((findOrder.getOrderItemList()).get(0).getItem().getName());
+//            System.out.println("===========================");
 
 
             tx.commit();
