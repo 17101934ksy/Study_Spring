@@ -1,4 +1,4 @@
-package org.example.domain.imbed;
+package org.example.domain.embed;
 
 import javax.persistence.Column;
 import javax.persistence.Embeddable;

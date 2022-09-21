@@ -1,10 +1,7 @@
-package org.example.domain.imbed;
-
-import net.bytebuddy.asm.Advice;
+package org.example.domain.embed;
 
 import javax.persistence.Embeddable;
 import java.time.LocalDateTime;
-import java.time.ZoneId;
 
 @Embeddable
 public class Period {

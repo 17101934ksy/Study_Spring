@@ -1,8 +1,8 @@
 package org.example.domain;
 
 import org.example.domain.base.BaseEntity;
-import org.example.domain.imbed.Address;
-import org.example.domain.imbed.Period;
+import org.example.domain.embed.Address;
+import org.example.domain.embed.Period;
 
 import javax.persistence.*;
 

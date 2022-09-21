@@ -1,10 +1,8 @@
 package org.example.domain;
 
-import org.example.domain.enums.OrderStatus;
 import org.example.domain.embed.Address;
 
 import javax.persistence.*;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -12,28 +10,23 @@ import static javax.persistence.CascadeType.*;
 import static javax.persistence.FetchType.*;
 
 @Entity
-public class Delivery {
-
-    @Id @GeneratedValue
-    @Column(name = "delivery_id")
+public class Orders {
+    @Id
+    @GeneratedValue
+    @Column(name = "order_id")
     private Long id;
+    private int orderAmount;
 
-    @OneToOne(mappedBy = "delivery", fetch= LAZY)
-    private Orders order;
+    @ManyToOne(fetch = LAZY)
+    @JoinColumn(name = "product_id")
+    private Product product;
 
     @OneToMany(cascade = ALL, orphanRemoval = true)
-    @JoinColumn(name = "delivery_id")
+    @JoinColumn(name = "order_id")
     private List<AddressEntity> addressEntityList = new ArrayList<>();
 
-
-    private OrderStatus status;
-
     @Embedded
-    private Address address;
-
-    /*
-    * getter setter
-    * */
+    private Address homeAddress;
 
     public Long getId() {
         return id;
@@ -43,22 +36,21 @@ public class Delivery {
         this.id = id;
     }
 
-    public Orders getOrder() {
-        return order;
+    public int getOrderAmount() {
+        return orderAmount;
     }
 
-    public void setOrder(Orders order) {
-        this.order = order;
+    public void setOrderAmount(int orderAmount) {
+        this.orderAmount = orderAmount;
     }
 
-    public OrderStatus getStatus() {
-        return status;
+    public Product getProduct() {
+        return product;
     }
 
-    public void setStatus(OrderStatus status) {
-        this.status = status;
+    public void setProduct(Product product) {
+        this.product = product;
     }
-
 
     public List<AddressEntity> getAddressEntityList() {
         return addressEntityList;

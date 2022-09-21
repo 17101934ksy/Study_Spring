@@ -4,7 +4,8 @@ import org.example.domain.embed.Address;
 
 import javax.persistence.*;
 
-//엔티티
+import static javax.persistence.FetchType.*;
+
 @Entity
 @Table(name = "address")
 public class AddressEntity {
@@ -13,10 +14,10 @@ public class AddressEntity {
     @Column(name = "address_id")
     private Long id;
 
-    //값 타입
     private Address address;
 
-    public AddressEntity(String city, String street, String zipcode) {
+    public AddressEntity(){}
+    public AddressEntity(String city, String street, String zipcode){
         this.address = new Address(city, street, zipcode);
     }
 
