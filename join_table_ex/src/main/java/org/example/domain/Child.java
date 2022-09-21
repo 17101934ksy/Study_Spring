@@ -2,18 +2,24 @@ package org.example.domain;
 
 import javax.persistence.*;
 import java.util.ArrayList;
-import java.util.List;
+
+import static javax.persistence.FetchType.*;
 
 @Entity
-public class Team {
+public class Child {
 
     @Id @GeneratedValue
-    @Column(name = "team_id")
+    @Column(name = "child_id")
     private Long id;
+
     private String name;
 
-    @OneToMany(mappedBy = "team", fetch = FetchType.LAZY)
-    private List<Member> member = new ArrayList<>();
+    @ManyToOne(fetch = LAZY)
+    @JoinColumn(name = "parent_id")
+    private Parent parent;
+    /*
+    * getter setter
+    * */
 
     public Long getId() {
         return id;
@@ -31,11 +37,11 @@ public class Team {
         this.name = name;
     }
 
-    public List<Member> getMember() {
-        return member;
+    public Parent getParent() {
+        return parent;
     }
 
-    public void setMember(List<Member> member) {
-        this.member = member;
+    public void setParent(Parent parent) {
+        this.parent = parent;
     }
 }

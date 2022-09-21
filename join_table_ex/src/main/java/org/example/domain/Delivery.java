@@ -1,8 +1,15 @@
 package org.example.domain;
 
 import org.example.domain.enums.OrderStatus;
+import org.example.domain.imbed.Address;
 
 import javax.persistence.*;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import static javax.persistence.CascadeType.*;
+import static javax.persistence.FetchType.*;
 
 @Entity
 public class Delivery {
@@ -11,14 +18,18 @@ public class Delivery {
     @Column(name = "delivery_id")
     private Long id;
 
-    @OneToOne(mappedBy = "delivery")
+    @OneToOne(mappedBy = "delivery", fetch= LAZY)
     private Orders order;
 
-    private String city;
-    private String street;
-    private String zipcode;
+    @OneToMany(cascade = ALL, orphanRemoval = true)
+    @JoinColumn(name = "delivery_id")
+    private List<AddressEntity> addressEntityList = new ArrayList<>();
+
+
     private OrderStatus status;
 
+    @Embedded
+    private Address address;
 
     /*
     * getter setter
@@ -40,35 +51,20 @@ public class Delivery {
         this.order = order;
     }
 
-    public String getCity() {
-        return city;
-    }
-
-    public void setCity(String city) {
-        this.city = city;
-    }
-
-    public String getStreet() {
-        return street;
-    }
-
-    public void setStreet(String street) {
-        this.street = street;
-    }
-
-    public String getZipcode() {
-        return zipcode;
-    }
-
-    public void setZipcode(String zipcode) {
-        this.zipcode = zipcode;
-    }
-
     public OrderStatus getStatus() {
         return status;
     }
 
     public void setStatus(OrderStatus status) {
         this.status = status;
+    }
+
+
+    public List<AddressEntity> getAddressEntityList() {
+        return addressEntityList;
+    }
+
+    public void setAddressEntityList(List<AddressEntity> addressEntityList) {
+        this.addressEntityList = addressEntityList;
     }
 }
