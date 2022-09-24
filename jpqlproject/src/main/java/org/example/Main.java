@@ -250,6 +250,31 @@ public class Main {
                 System.out.println(member1.getName() + ": " + member1.getTeam().getId());
             }
 
+            List<Member> resultList3 = em.createNamedQuery("Member.findByUsername", Member.class)
+                    .setParameter("username", "member1")
+                    .getResultList();
+
+
+            System.out.println("================Username================");
+            for (Member member1 : resultList3) {
+                System.out.println("member = " + member1.getName());
+            }
+            System.out.println("================Username================");
+
+            Member mmm = new Member();
+            mmm.setAge(43);
+            em.persist(mmm);
+            em.flush();
+            em.clear();
+
+            int resultCount = em.createQuery("update Member m set m.age = 20")
+                    .executeUpdate();
+            System.out.println("============update=============");
+            System.out.println(resultCount);
+            System.out.println("============update=============");
+
+            Member member1 = em.find(Member.class, mmm.getId());
+            System.out.println(member1.getAge());
 
 
 //            List<String> resultList = em.createQuery("select trim(m.name) from Member m", String.class)
