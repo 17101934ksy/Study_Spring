@@ -7,8 +7,10 @@ import org.example.domain.embed.Address;
 
 import javax.persistence.*;
 import java.util.List;
+import java.util.Locale;
 
 public class Main {
+
     public static void main(String[] args) {
 
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("hello5");
@@ -16,6 +18,7 @@ public class Main {
         EntityTransaction tx = em.getTransaction();
 
         tx.begin();
+
 
         try{
 //            Team team1 = new Team();
@@ -152,7 +155,7 @@ public class Main {
 //            }
 
             String teamName = "";
-            for(int i = 0; i< 30; i++){
+            for(int i = 0; i< 15; i++){
 
                 if (i % 10 == 0){ teamName = "team" + i; }
                 Team t = new Team();
@@ -168,6 +171,9 @@ public class Main {
             em.flush();
             em.clear();
 
+            System.out.println("=====================insert===========================");
+            System.out.println("=====================insert===========================");
+
             List<Member> resultList = em.createQuery("select m from Member m join fetch m.team", Member.class)
                     .getResultList();
             for (Member member : resultList) {
@@ -176,6 +182,75 @@ public class Main {
                 System.out.println("m.teamName = "+ member.getTeam().getName());
                 System.out.println("m.teamId = "+ member.getTeam().getId());
             }
+
+            List<Team> resultList1 = em.createQuery("select t from Team t join fetch t.members", Team.class)
+                    .getResultList();
+
+            for (Team team : resultList1) {
+                for (Member m : team.getMembers()){
+                    System.out.println("m.id = " + m.getId());
+                    System.out.println("m.id = " + m.getName());
+                }
+            }
+
+            List<Team> resultList2 = em.createQuery("select distinct t from Team t join fetch t.members", Team.class)
+                    .getResultList();
+
+            for (Team team : resultList2) {
+                for (Member m : team.getMembers()){
+                    System.out.println("m = " + m.getId());
+                }
+            }
+
+            Member m1 = new Member();
+            m1.setAge(90);
+            em.persist(m1);
+            em.flush();
+            em.clear();
+
+            String jpql2 = "select m from Member m where m = :member";
+            List<Member> member = em.createQuery(jpql2)
+                                    .setParameter("member", m1)
+                                    .getResultList();
+
+            for (Member member1 : member) {
+                System.out.println("member.id = " + member1.getId());
+            }
+
+            String jpql3 = "select m from Member m where m.id = :memberId";
+            List<Member> memberId = em.createQuery(jpql3)
+                    .setParameter("memberId", m1.getId())
+                    .getResultList();
+
+            System.out.println("========================integer==============");
+            for (Member m : memberId) {
+                System.out.println("member.id = " + m.getId());
+            }
+
+            Team team = em.find(Team.class, 2l);
+            System.out.println("=======================================query========================");
+
+            for(int i = 0; i < 30; i++){
+                Member tempMember = new Member();
+                tempMember.setAge(i);
+                tempMember.setName("member" + i);
+                tempMember.setTeam(team);
+                em.persist(tempMember);
+            }
+            em.flush();
+
+            System.out.println("=======================team join============================");
+
+            String jpql4 = "select m from Member m where m.team = :team";
+            List<Member> team1 = em.createQuery(jpql4)
+                    .setParameter("team", team)
+                    .getResultList();
+
+            for (Member member1 : team1) {
+                System.out.println(member1.getName() + ": " + member1.getTeam().getId());
+            }
+
+
 
 //            List<String> resultList = em.createQuery("select trim(m.name) from Member m", String.class)
 //                    .getResultList();
