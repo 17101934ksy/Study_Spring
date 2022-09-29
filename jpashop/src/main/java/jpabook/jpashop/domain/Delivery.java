@@ -5,6 +5,9 @@ import lombok.Setter;
 
 import javax.persistence.*;
 
+import static javax.persistence.CascadeType.*;
+import static javax.persistence.FetchType.*;
+
 @Entity
 @Getter @Setter
 public class Delivery {
@@ -13,7 +16,7 @@ public class Delivery {
     @Column(name = "delivery_id")
     private Long id;
 
-    @OneToOne(mappedBy = "delivery", fetch= FetchType.LAZY)
+    @OneToOne(mappedBy = "delivery", fetch= LAZY, cascade = ALL)
     private Order order;
 
     @Embedded
