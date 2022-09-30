@@ -2,7 +2,6 @@ package kakaoToy1.kakaoToy1.controller;
 
 import kakaoToy1.kakaoToy1.domain.Member;
 import kakaoToy1.kakaoToy1.dto.MemberRegisterRequestDTO;
-import kakaoToy1.kakaoToy1.repository.MemberRepository;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
@@ -21,14 +20,14 @@ public class MemberRegisterController {
         model.addAttribute("requestDto", registerRequestDTO);
         return "register-member";
     }
-
-    @PostMapping("/kakao")
-    @Transactional
-    public String registerKaKao(@ModelAttribute("requestDto") MemberRegisterRequestDTO rto, Model model){
-        MemberRepository memberRepository = new MemberRepository();
-        Member member = memberRepository.find((Long) model.getAttribute("code"));
-        member.changeMemberData(rto.getUsername(), rto.getJob(), rto.getStudentId(),rto.getProfessorId(),
-                rto.getUniversity(), rto.getDepartment(), rto.getEmail());
-        return "";
-    }
+//
+//    @PostMapping("/kakao")
+//    @Transactional
+//    public String registerKaKao(@ModelAttribute("requestDto") MemberRegisterRequestDTO rto, Model model){
+//        MemberRepository memberRepository = new MemberRepository();
+//        Member member = memberRepository.find((Long) model.getAttribute("code"));
+//        member.changeMemberData(rto.getUsername(), rto.getJob(), rto.getStudentId(),rto.getProfessorId(),
+//                rto.getUniversity(), rto.getDepartment(), rto.getEmail());
+//        return "";
+//    }
 }

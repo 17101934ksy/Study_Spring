@@ -1,11 +1,13 @@
 package kakaoToy1.kakaoToy1.domain;
 
 import lombok.Getter;
+import lombok.ToString;
 
 import javax.persistence.*;
 
 @Entity
 @Getter
+@ToString
 public class Member {
 
     @Id @GeneratedValue
@@ -36,8 +38,7 @@ public class Member {
 
     public Member() {}
 
-    public Member(Long id, MemberLoginWay memberLoginWay, Long userId) {
-        this.id = id;
+    public Member(MemberLoginWay memberLoginWay, Long userId) {
         this.memberLoginWay = memberLoginWay;
         this.userId = userId;
         this.status = MemberAuthStatus.GUEST;
@@ -57,4 +58,5 @@ public class Member {
     public void changeMemberStatus(MemberAuthStatus status){
         this.status = status;
     }
+
 }
