@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <form th:action="@{/register/kakao}"  th:object="${requestDto}" method="post" >
+        <table class="table">
+            <tbody>
+            <tr>
+                <td>이름</td>
+                <td><input type="text" th:field="*{username}"></td>
+            </tr>
+            <tr>
+                <td>직업</td>
+                <td><input type="text" th:field="*{job}"></td>
+            </tr>
+            <tr>
+                <td>대학</td>
+                <td><input type="text" th:field="*{universisy}"></td>
+            </tr>
+            <tr>
+                <td>학과</td>
+                <td><input type="text" th:field="*{department}"></td>
+            </tr>
+            <tr>
+                <td>학번</td>
+                <td><input type="text" th:field="*{studentId}"></td>
+            </tr>
+            <tr>
+                <td>교번</td>
+                <td><input type="text" th:field="*{professorId}"></td>
+            </tr>
+            <tr>
+                <td>이메일</td>
+                <td><input type="text" th:field="*{email}"></td>
+            </tr>
+            </tbody>
+            <button type="submit">등록</button>
+        </table>
+    </form>
+</body>
+</html>
