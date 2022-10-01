@@ -15,7 +15,11 @@ import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.URL;
 import java.util.Map;
 import java.util.Optional;
 
@@ -50,21 +54,17 @@ public class KaKaoController {
 
         Member member = new Member(MemberLoginWay.KAKAO, (String) userInfo.get("id"));
 
-        System.out.println("member.getLoginId() = " + member.getLoginId());
-        
         Optional<Member> memberByLoginId = memberRepository.findByLoginId(member.getLoginId());
 
         if (memberByLoginId.isEmpty()){
             Member saveMember = memberRepository.save(member);
         }
 
-        // 쿠키에 유지 시간 정보를 주지 않으면 세션 쿠키(브라우저 종료시 모두 종료)
-//        Cookie idCookie = new Cookie("sessionToken", code);
-//        response.addCookie(idCookie);
-
         //로그인 성공 처리
         //세션이 있으면 있는 세션 반환, 없으면 신규 세션 생성
         HttpSession session = request.getSession();
+        session.setAttribute("code", code);
+        session.setAttribute("access_token", access_token);
         session.setAttribute("sessionId", member.getLoginId());
 
         System.out.println("session = " + session);
@@ -73,14 +73,17 @@ public class KaKaoController {
         return "kakaoCI/logout";
     }
 
-//    @GetMapping("/logout")
-//    public String logout(HttpServletRequest request){
-//        HttpSession session = request.getSession(false);
-//        if (session != null){
-//            session.invalidate();
-//        }
-//        return "kakaoCI/logout";
-//    }
+    @GetMapping("/logout")
+    public String logout(HttpServletRequest request) {
+
+        HttpSession session = request.getSession(false);
+        if (session != null){
+            ks.getLogout((String) session.getAttribute("access_token"));
+            session.invalidate();
+        }
+
+        return "index";
+    }
 
 }
 

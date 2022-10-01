@@ -58,6 +58,7 @@ public class Member implements Persistable<String> {
         this.university = university;
         this.department = department;
         this.email = email;
+        this.createdDate = LocalDateTime.now();
     }
 
     public void changeMemberStatus(MemberAuthStatus status){
