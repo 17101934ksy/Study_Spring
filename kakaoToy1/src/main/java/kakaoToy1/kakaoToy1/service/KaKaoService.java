@@ -30,8 +30,8 @@ public class KaKaoService {
             BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(urlConnection.getOutputStream()));
             StringBuilder sb = new StringBuilder();
             sb.append("grant_type=authorization_code");
-            sb.append("&client_id=1fc8744d36e620f36412f47307086b98");
-            sb.append("&redirect_uri=http://localhost:8080/member/kakao");
+            sb.append("&client_id=12c4af3ef38e7e64d6c94bd129636f03");
+            sb.append("&redirect_uri=http://localhost:8080/kakaologin");
             sb.append("&code=" + code);
 
             bw.write(sb.toString());

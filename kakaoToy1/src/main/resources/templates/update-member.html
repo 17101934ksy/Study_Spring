@@ -1,11 +1,11 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
 </head>
 <body>
-    <form th:action="@{/register/kakao}"  th:object="${requestDto}" method="post" >
+    <form th:action="@{/update/member/data}"  th:object="${requestDto}" method="post" >
         <table class="table">
             <tbody>
             <tr>
@@ -18,19 +18,15 @@
             </tr>
             <tr>
                 <td>대학</td>
-                <td><input type="text" th:field="*{universisy}"></td>
+                <td><input type="text" th:field="*{university}"></td>
             </tr>
             <tr>
                 <td>학과</td>
                 <td><input type="text" th:field="*{department}"></td>
             </tr>
             <tr>
-                <td>학번</td>
-                <td><input type="text" th:field="*{studentId}"></td>
-            </tr>
-            <tr>
-                <td>교번</td>
-                <td><input type="text" th:field="*{professorId}"></td>
+                <td>학사번</td>
+                <td><input type="text" th:field="*{uniqueId}"></td>
             </tr>
             <tr>
                 <td>이메일</td>
