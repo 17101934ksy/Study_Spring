@@ -31,13 +31,20 @@ public class ChattingLog {
 
     public ChattingLog() {}
 
-    public ChattingLog(String content) {
+    public ChattingLog(String content, Member member, TestSpace testSpace) {
         this.createdDate = LocalDateTime.now();
         this.content = content;
+        this.member = member;
+        this.testSpace = testSpace;
     }
 
     //== 필드값 주입 메서드
     public void changeDeleteDate(){
         this.deleteDate = LocalDateTime.now();
     }
+
+    //== 얀관관계 편의 메서드
+
+
+
 }

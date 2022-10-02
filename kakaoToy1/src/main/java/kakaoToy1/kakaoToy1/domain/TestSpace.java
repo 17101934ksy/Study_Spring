@@ -36,10 +36,11 @@ public class TestSpace {
 
     public TestSpace() {}
 
-    public TestSpace(String name, int maxMember) {
-        this.createAndModifyDate.setCreatedDate();
+    public TestSpace(String name, int maxMember, Member member) {
+        this.createAndModifyDate = new CreateAndModifyDate();
         this.name = name;
         this.maxMember = maxMember;
+        this.member = member;
     }
 
     //== 필드값 주입 메서드
@@ -50,6 +51,13 @@ public class TestSpace {
 
     public void changeName(String name){
         this.name = name;
+        this.createAndModifyDate.changeModifiedDate();
+    }
+
+
+    // == 연관관계 주입 메서드
+    public void addChattingLog(ChattingLog chattingLog){
+        chattingLogs.add(chattingLog);
         this.createAndModifyDate.changeModifiedDate();
     }
 

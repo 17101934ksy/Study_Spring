@@ -92,7 +92,7 @@ class MemberRepositoryTest {
         boolean memberIsEmpty;
         boolean memberIsPresent;
         //given
-        Optional<Member> member = memberRepository.findById("10000L");
+        Optional<Member> member = memberRepository.findByLoginId("10000L");
 
         //when
         memberIsEmpty = member.isEmpty();
@@ -110,11 +110,9 @@ class MemberRepositoryTest {
 
         //when
         Member saveMember = memberRepository.save(member);
-
         Optional<Member> memberByMemberUserId = memberRepository.findByLoginId(member.getLoginId());
 
         //then
-
         assertThat(memberByMemberUserId.get().getLoginId()).isEqualTo(member.getLoginId());
     }
 }

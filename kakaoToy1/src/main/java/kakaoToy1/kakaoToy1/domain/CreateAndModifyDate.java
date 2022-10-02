@@ -11,12 +11,18 @@ public class CreateAndModifyDate {
     private LocalDateTime createdDate;
     private LocalDateTime modifiedDate;
 
-    //== 편의 메서드
-    public void changeModifiedDate(){
-        this.modifiedDate=LocalDateTime.now();
+    public CreateAndModifyDate() {
+        this.createdDate = LocalDateTime.now();
+        this.modifiedDate = null;
     }
 
-    protected void setCreatedDate(){
+
+    //== 편의 메서드
+    public void changeModifiedDate(){
+        this.modifiedDate = LocalDateTime.now();
+    }
+
+    public void setCreatedDate(){
         this.createdDate = LocalDateTime.now();
     }
 }

@@ -13,7 +13,7 @@ import static javax.persistence.FetchType.*;
 public class TestSave {
 
     @Id @GeneratedValue
-    @Column(name = "test_id")
+    @Column(name = "save_id")
     private Long id;
 
     private int testNumber;
@@ -35,12 +35,18 @@ public class TestSave {
 
     public TestSave() {}
 
-    public TestSave(int testNumber, String answer) {
+    public TestSave(int testNumber, String answer, TestProblem testProblem) {
         this.testNumber = testNumber;
         this.answer = answer;
-        this.createAndModifyDate.setCreatedDate();
+        this.createAndModifyDate = new CreateAndModifyDate();
+        this.testProblem = testProblem;
     }
 
     //필드값 주입 메서드
-    
+
+    public void changeAnswer(String answer){
+        this.answer = answer;
+        this.createAndModifyDate.changeModifiedDate();
+    }
+
 }
