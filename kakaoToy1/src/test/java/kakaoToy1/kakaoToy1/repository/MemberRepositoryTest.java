@@ -1,15 +1,12 @@
 package kakaoToy1.kakaoToy1.repository;
 
-import kakaoToy1.kakaoToy1.domain.Member;
-import kakaoToy1.kakaoToy1.domain.MemberAuthStatus;
-import kakaoToy1.kakaoToy1.domain.MemberLoginWay;
-import org.assertj.core.api.Assertions;
-import org.junit.jupiter.api.DisplayName;
+import kakaoToy1.kakaoToy1.domain.member.Member;
+import kakaoToy1.kakaoToy1.domain.member.MemberAuthStatus;
+import kakaoToy1.kakaoToy1.domain.member.MemberLoginWay;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
-import org.springframework.test.annotation.Rollback;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import java.util.Optional;

@@ -1,4 +1,4 @@
-package kakaoToy1.kakaoToy1.domain;
+package kakaoToy1.kakaoToy1.domain.member;
 
 import lombok.Getter;
 import lombok.ToString;

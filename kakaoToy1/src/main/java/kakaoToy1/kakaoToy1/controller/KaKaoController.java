@@ -1,7 +1,7 @@
 package kakaoToy1.kakaoToy1.controller;
 
-import kakaoToy1.kakaoToy1.domain.Member;
-import kakaoToy1.kakaoToy1.domain.MemberLoginWay;
+import kakaoToy1.kakaoToy1.domain.member.Member;
+import kakaoToy1.kakaoToy1.domain.member.MemberLoginWay;
 import kakaoToy1.kakaoToy1.repository.MemberRepository;
 import kakaoToy1.kakaoToy1.service.KaKaoService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,15 +11,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStreamReader;
-import java.net.HttpURLConnection;
-import java.net.URL;
 import java.util.Map;
 import java.util.Optional;
 

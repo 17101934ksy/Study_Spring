@@ -1,7 +1,6 @@
 package kakaoToy1.kakaoToy1.repository;
 
-import kakaoToy1.kakaoToy1.domain.Member;
-import lombok.RequiredArgsConstructor;
+import kakaoToy1.kakaoToy1.domain.member.Member;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

@@ -1,6 +1,6 @@
 package kakaoToy1.kakaoToy1.controller;
 
-import kakaoToy1.kakaoToy1.domain.Member;
+import kakaoToy1.kakaoToy1.domain.member.Member;
 import kakaoToy1.kakaoToy1.dto.MemberRegisterRequestDTO;
 import kakaoToy1.kakaoToy1.repository.MemberRepository;
 import org.springframework.stereotype.Controller;
@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.util.Optional;
 
