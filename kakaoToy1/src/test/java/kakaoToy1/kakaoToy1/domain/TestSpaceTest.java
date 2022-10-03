@@ -42,25 +42,6 @@ class TestSpaceTest {
         assertThat(testSpace.getCreateAndModifyDate().getModifiedDate()).isAfter(testSpace2.getCreateAndModifyDate().getCreatedDate());
     }
 
-
-    @Test
-    public void 채팅로그기록() throws Exception {
-        //given
-
-        TestSpace testSpace = new TestSpace("제1시험장", 140, new Member());
-        TestSpace testSpace2 = new TestSpace("제1시험장", 140, new Member());
-
-        //when
-        for(int i=0; i<30; i++){
-            testSpace.addChattingLog(new ChattingLog());
-        }
-
-        //then
-        assertThat(testSpace.getChattingLogs().size()).isEqualTo(30);
-        assertThat(testSpace2.getCreateAndModifyDate().getModifiedDate()).isNull();
-        assertThat(testSpace.getCreateAndModifyDate().getModifiedDate()).isAfter(testSpace2.getCreateAndModifyDate().getCreatedDate());
-    }
-
     @Test
     public void 시험장이름변경() throws Exception {
         //given

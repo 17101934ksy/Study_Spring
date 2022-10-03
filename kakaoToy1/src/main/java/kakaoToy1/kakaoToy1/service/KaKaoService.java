@@ -67,7 +67,6 @@ public class KaKaoService {
             e.printStackTrace();
         }
 
-
         return token;
     }
 

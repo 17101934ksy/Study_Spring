@@ -29,9 +29,6 @@ public class TestSpace {
     private Member member;
 
     @OneToMany(mappedBy = "testSpace")
-    private List<ChattingLog> chattingLogs = new ArrayList<>();
-
-    @OneToMany(mappedBy = "testSpace")
     private List<TestSave> testSaves = new ArrayList<>();
 
     public TestSpace() {}
@@ -51,13 +48,6 @@ public class TestSpace {
 
     public void changeName(String name){
         this.name = name;
-        this.createAndModifyDate.changeModifiedDate();
-    }
-
-
-    // == 연관관계 주입 메서드
-    public void addChattingLog(ChattingLog chattingLog){
-        chattingLogs.add(chattingLog);
         this.createAndModifyDate.changeModifiedDate();
     }
 

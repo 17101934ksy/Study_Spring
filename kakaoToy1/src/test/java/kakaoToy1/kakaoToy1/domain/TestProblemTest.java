@@ -9,6 +9,8 @@ import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import java.time.LocalDateTime;
 
+import static java.time.LocalDateTime.*;
+import static kakaoToy1.kakaoToy1.domain.TestSubject.PYTHONTEST;
 import static org.assertj.core.api.Assertions.*;
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -22,19 +24,18 @@ class TestProblemTest {
         Member member = new Member();
         TestSave testSave = new TestSave();
 
-        TestProblem testProblem = new TestProblem(TestSubject.PYTHONTEST, 4010101L, 400000L, 1, "test1" , member);
-        TestProblem testProblem2 = new TestProblem(TestSubject.PYTHONTEST, 401100L, 39999L, 2, "test1" , member);
-
+        TestProblem testProblem = new TestProblem(PYTHONTEST, 4010101L, 400000L, now(), 1, "test1", member);
+        TestProblem testProblem2 = new TestProblem(PYTHONTEST, 401100L, 39999L, now(), 2, "test2", member);
 
         //when
         testProblem2.addTestSaves(testSave);
         testProblem2.addTestSaves(testSave);
-        testProblem.changeTestDate(LocalDateTime.now());
+        testProblem.changeTestDate(now());
 
         //then
-        assertThat(testProblem.getTestSubject()).isEqualTo(TestSubject.PYTHONTEST);
+        assertThat(testProblem.getTestSubject()).isEqualTo(PYTHONTEST);
         assertThat(testProblem.getCreateAndModifyDate().getCreatedDate()).isNotNull();
-        assertThat(testProblem.getCreateAndModifyDate().getCreatedDate()).isBefore(LocalDateTime.now());
+        assertThat(testProblem.getCreateAndModifyDate().getCreatedDate()).isBefore(now());
         assertThat(testProblem2.getTestSaves().size()).isEqualTo(2);
     }
 
@@ -43,11 +44,11 @@ class TestProblemTest {
         //given
         Member member = new Member();
 
-        TestProblem testProblem = new TestProblem(TestSubject.PYTHONTEST, 4010101L, 400000L, 1, "test1", member);
-        TestProblem testProblem2 = new TestProblem(TestSubject.PYTHONTEST, 401100L, 39999L, 2, "test1", member);
+        TestProblem testProblem = new TestProblem(PYTHONTEST, 4010101L, 400000L, now(), 1, "test1", member);
+        TestProblem testProblem2 = new TestProblem(PYTHONTEST, 401100L, 39999L, now(), 2, "test2", member);
 
         //when
-        testProblem.changeTestDate(LocalDateTime.now());
+        testProblem.changeTestDate(now());
 
         //then
         assertThat(testProblem.getCreateAndModifyDate().getModifiedDate()).isNotEqualTo(testProblem2.getCreateAndModifyDate().getModifiedDate());
@@ -60,8 +61,9 @@ class TestProblemTest {
         //given
         Member member = new Member();
 
-        TestProblem testProblem = new TestProblem(TestSubject.PYTHONTEST, 4010101L, 400000L, 1, "test1", member);
-        TestProblem testProblem2 = new TestProblem(TestSubject.PYTHONTEST, 401100L, 39999L, 2, "test2", member);
+        TestProblem testProblem = new TestProblem(PYTHONTEST, 4010101L, 400000L, now(), 1, "test1", member);
+        TestProblem testProblem2 = new TestProblem(PYTHONTEST, 401100L, 39999L, now(), 2, "test2", member);
+
 
         //when
         testProblem.changeProblem("test3");
@@ -79,8 +81,9 @@ class TestProblemTest {
         //given
         Member member = new Member();
 
-        TestProblem testProblem = new TestProblem(TestSubject.PYTHONTEST, 4010101L, 400000L, 1, "test1", member);
-        TestProblem testProblem2 = new TestProblem(TestSubject.PYTHONTEST, 401100L, 39999L, 2, "test2", member);
+        TestProblem testProblem = new TestProblem(PYTHONTEST, 4010101L, 400000L, now(), 1, "test1", member);
+        TestProblem testProblem2 = new TestProblem(PYTHONTEST, 401100L, 39999L, now(), 2, "test2", member);
+
 
         //when
         testProblem.changeSubjectNumber(12000L);
@@ -95,8 +98,8 @@ class TestProblemTest {
         //given
         Member member = new Member();
 
-        TestProblem testProblem = new TestProblem(TestSubject.PYTHONTEST, 4010101L, 400000L, 1, "test1", member);
-        TestProblem testProblem2 = new TestProblem(TestSubject.PYTHONTEST, 401100L, 39999L, 2, "test2", member);
+        TestProblem testProblem = new TestProblem(PYTHONTEST, 4010101L, 400000L, now(), 1, "test1", member);
+        TestProblem testProblem2 = new TestProblem(PYTHONTEST, 401100L, 39999L, now(), 2, "test2", member);
 
         //when
         testProblem.changeClassNumber(100000l);
@@ -113,15 +116,16 @@ class TestProblemTest {
         //given
         Member member = new Member();
 
-        TestProblem testProblem = new TestProblem(TestSubject.PYTHONTEST, 4010101L, 400000L, 1, "test1", member);
-        TestProblem testProblem2 = new TestProblem(TestSubject.PYTHONTEST, 401100L, 39999L, 2, "test2", member);
+        TestProblem testProblem = new TestProblem(PYTHONTEST, 4010101L, 400000L, now(), 1, "test1", member);
+        TestProblem testProblem2 = new TestProblem(PYTHONTEST, 401100L, 39999L, now(), 2, "test2", member);
+
 
         //when
         testProblem.changeTestSubject(TestSubject.JAVATEST);
 
         //then
         assertThat(testProblem.getTestSubject()).isEqualTo(TestSubject.JAVATEST);
-        assertThat(testProblem2.getTestSubject()).isEqualTo(TestSubject.PYTHONTEST);
+        assertThat(testProblem2.getTestSubject()).isEqualTo(PYTHONTEST);
         assertThat(testProblem2.getCreateAndModifyDate().getModifiedDate()).isNull();
         assertThat(testProblem.getCreateAndModifyDate().getModifiedDate()).isAfter(testProblem2.getCreateAndModifyDate().getCreatedDate());
     }
@@ -131,8 +135,9 @@ class TestProblemTest {
         //given
         Member member = new Member();
 
-        TestProblem testProblem = new TestProblem(TestSubject.PYTHONTEST, 4010101L, 400000L, 1, "test1", member);
-        TestProblem testProblem2 = new TestProblem(TestSubject.PYTHONTEST, 401100L, 39999L, 2, "test2", member);
+        TestProblem testProblem = new TestProblem(PYTHONTEST, 4010101L, 400000L, now(), 1, "test1", member);
+        TestProblem testProblem2 = new TestProblem(PYTHONTEST, 401100L, 39999L, now(), 2, "test2", member);
+
 
         //when
         testProblem.changeTestNumber(3);

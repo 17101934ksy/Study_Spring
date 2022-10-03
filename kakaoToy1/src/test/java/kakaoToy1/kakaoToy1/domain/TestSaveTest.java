@@ -13,11 +13,6 @@ import static org.junit.jupiter.api.Assertions.*;
 @ExtendWith(SpringExtension.class)
 @DataJpaTest
 class TestSaveTest {
-//        this.testNumber = testNumber;
-//        this.answer = answer;
-//        this.createAndModifyDate.setCreatedDate();
-//        this.testProblem = testProblem;
-
 
     @Test
     public void 시험저장() throws Exception {

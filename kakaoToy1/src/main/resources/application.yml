@@ -10,11 +10,14 @@ spring:
     database-platform: org.hibernate.dialect.H2Dialect
     hibernate:
       ddl-auto: create
-    properties:
-      hibernate:
-        format_sql: true
+#    properties:
+#      hibernate:
+#        format_sql: true
 
 #logging:
+#  config:
+#    classpath:
+#      log4j2-local.xml
 #  level:
 #    org.hibernate.SQL: debug
 #    org.hibernate.type: trace

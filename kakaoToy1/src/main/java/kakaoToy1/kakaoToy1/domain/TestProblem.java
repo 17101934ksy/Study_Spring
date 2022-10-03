@@ -42,7 +42,7 @@ public class TestProblem {
     private List<TestSave> testSaves = new ArrayList<>();
 
     public TestProblem() {}
-    public TestProblem(TestSubject testSubject, Long subjectNumber, Long classNumber, int testNumber, String problem, Member member) {
+    public TestProblem(TestSubject testSubject, Long subjectNumber, Long classNumber, LocalDateTime testDate, int testNumber, String problem, Member member) {
         this.testSubject = testSubject;
         this.subjectNumber = subjectNumber;
         this.classNumber = classNumber;

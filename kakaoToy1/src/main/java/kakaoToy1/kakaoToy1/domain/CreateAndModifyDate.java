@@ -5,6 +5,8 @@ import lombok.Getter;
 import javax.persistence.Embeddable;
 import java.time.LocalDateTime;
 
+import static java.time.LocalDateTime.now;
+
 @Embeddable @Getter
 public class CreateAndModifyDate {
 
@@ -12,17 +14,17 @@ public class CreateAndModifyDate {
     private LocalDateTime modifiedDate;
 
     public CreateAndModifyDate() {
-        this.createdDate = LocalDateTime.now();
+        this.createdDate = now();
         this.modifiedDate = null;
     }
 
 
     //== 편의 메서드
     public void changeModifiedDate(){
-        this.modifiedDate = LocalDateTime.now();
+        this.modifiedDate = now();
     }
 
     public void setCreatedDate(){
-        this.createdDate = LocalDateTime.now();
+        this.createdDate = now();
     }
 }
