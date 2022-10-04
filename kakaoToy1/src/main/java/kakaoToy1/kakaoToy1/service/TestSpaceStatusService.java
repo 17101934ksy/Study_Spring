@@ -23,24 +23,28 @@ public class TestSpaceStatusService {
     private final TestSpaceRepository testSpaceRepository;
 
 
+    /**
+     * 시험장에 참가하는 인원일 경우, guest로 직위를 등록하는 메소드
+     */
     public void setGuestSessionStatus(HttpSession session, String testSpaceId) throws  Exception {
         validateSession(session);
 
-        if (session.getAttribute(testSpaceId + "_status") == null) {
+        if (session.getAttribute(testSpaceId + "_status") == null)
             session.setAttribute(testSpaceId + "_status", GUEST);
-        }
     }
 
-
+    /**
+     * 시험장의 staff로 직위들 등록하는 메소드
+     */
     public void changeStaffSessionStatus(HttpSession session, String testSpaceId) throws Exception {
 
         validateSession(session);
 
-        if (session.getAttribute(testSpaceId + "_status") == GUEST){
+        if (session.getAttribute(testSpaceId + "_status") == GUEST)
             session.setAttribute(testSpaceId + "_status", STAFF);
-        } else if(session.getAttribute(testSpaceId + "_status") == STAFF){
+
+        else if(session.getAttribute(testSpaceId + "_status") == STAFF)
             session.setAttribute(testSpaceId + "_status", GUEST);
-        }
     }
 
     /**
@@ -53,6 +57,7 @@ public class TestSpaceStatusService {
             Optional<List<TestSpace>> findTestSpace = testSpaceRepository.findByMember(findMember.get());
 
             for (TestSpace testSpace : findTestSpace.get()) {
+
                 if (String.valueOf(testSpace.getId()).equals(testSpaceId)){
                     session.setAttribute(testSpaceId + "_status", MASTER);
                     break;
@@ -70,7 +75,6 @@ public class TestSpaceStatusService {
         if (findMember.isEmpty()) {
             session.invalidate();
             throw new Exception("등록된 사용자가 아닙니다.");
-
         }
         return findMember;
     }
