@@ -1,6 +1,6 @@
 package kakaoToy1.kakaoToy1.controller;
 
-import kakaoToy1.kakaoToy1.service.StatusService;
+import kakaoToy1.kakaoToy1.service.TestSpaceStatusService;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -14,11 +14,11 @@ import javax.servlet.http.HttpSession;
 @Log4j2
 public class ChatController {
 
-    private final StatusService statusService;
+    private final TestSpaceStatusService testSpaceStatusService;
 
     @Autowired
-    public ChatController(StatusService statusService) {
-        this.statusService = statusService;
+    public ChatController(TestSpaceStatusService testSpaceStatusService) {
+        this.testSpaceStatusService = testSpaceStatusService;
     }
 
     @GetMapping("/chat")
