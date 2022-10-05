@@ -1,9 +1,0 @@
-spring:
-
-logging:
-  config:
-    classpath:
-      log4j2-local.xml
-  level:
-    org.hibernate.SQL: debug
-    org.hibernate.type: trace
