@@ -37,8 +37,8 @@ export default {
         loginPw: '',
       },
     });
-    axios.get('/api/account').then((res) => {
-      state.account = res.data;
+    axios.get('/api/login').then((res) => {
+      console.log(res.data);
     });
     return { state };
   },
@@ -51,7 +51,7 @@ export default {
         loginId: this.state.form.loginId,
         loginPw: this.state.form.loginPw,
       };
-      axios.post('api/account', args).then((res) => {
+      axios.post('api/login', args).then((res) => {
         console.log(res);
       })
     },

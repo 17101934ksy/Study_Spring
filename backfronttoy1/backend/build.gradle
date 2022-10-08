@@ -2,10 +2,11 @@ plugins {
 	id 'org.springframework.boot' version '2.7.4'
 	id 'io.spring.dependency-management' version '1.0.14.RELEASE'
 	id 'java'
+	id "org.asciidoctor.jvm.convert" version "3.3.2"
 }
 
 group = 'backend'
-version = '0.0.1-SNAPSHOT'
+version = '0.0.1'
 sourceCompatibility = '11'
 
 configurations {
@@ -50,8 +51,8 @@ dependencies {
 	annotationProcessor 'org.projectlombok:lombok'
 
 	//lombok for test
-	implementation 'org.projectlombok:lombok:1.18.18'
-	testAnnotationProcessor 'org.projectlombok:lombok'
+//	implementation 'org.projectlombok:lombok:1.18.18'
+//	testAnnotationProcessor 'org.projectlombok:lombok'
 
 	// querydsl
 //	implementation 'com.querydsl:querydsl-jpa'
