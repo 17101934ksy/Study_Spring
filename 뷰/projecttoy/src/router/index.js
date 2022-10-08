@@ -50,6 +50,36 @@ const routes = [
     name: 'DataBindingListView',
     component: () => import(/* webpackChunkName: "datastring" */ '../views/1_datastring/DataBindingListView.vue'),
   },
+  {
+    path: '/datastring/class',
+    name: 'DataBindingClassView',
+    component: () => import(/* webpackChunkName: "datastring" */ '../views/1_datastring/DataBindingClassView.vue'),
+  },
+  {
+    path: '/datastring/style',
+    name: 'DataBindingStyleView',
+    component: () => import(/* webpackChunkName: "datastring" */ '../views/1_datastring/DataBindingStyleView.vue'),
+  },
+  {
+    path: '/event/click',
+    name: 'EventClickView',
+    component: () => import(/* webpackChunkName: "eventclick" */ '../views/2_click/EventClickView.vue'),
+  },
+  {
+    path: '/event/change',
+    name: 'EventChangeView',
+    component: () => import(/* webpackChunkName: "eventclick" */ '../views/2_click/EventChangeView.vue'),
+  },
+  {
+    path: '/event/key',
+    name: 'EventKeyView',
+    component: () => import(/* webpackChunkName: "eventclick" */ '../views/2_click/EventKeyView.vue'),
+  },
+  {
+    path: '/kakaologin',
+    name: 'KakaoLogin',
+    component: () => import(/* webpackChunkName: "KakaoLogin" */ '../views/login/KakaoLogin.vue'),
+  },
 ];
 
 const router = createRouter({
