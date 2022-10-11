@@ -19,33 +19,47 @@ import java.util.stream.Collectors;
 @Slf4j
 public class AuthTokenProvider {
 
-    private Key key;
+    private final Key key;
     private static final String AUTHORITIES_KEY = "role";
 
     public AuthTokenProvider(String secret){
         this.key = Keys.hmacShaKeyFor(secret.getBytes());
     }
 
+
+    /**
+     * AuthToken 생성
+     * @return AuthToken
+     */
     public AuthToken createAuthToken(String id, Date expiry) {
         return new AuthToken(id, expiry, key);
     }
 
-
-    public AuthToken createAuthToken(String id, String role, Date expiry){
+    public AuthToken createAuthToken(String id, String role, Date expiry) {
         return new AuthToken(id, role, expiry, key);
     }
 
+
+    /**
+     * AuthToken 변경
+     * @return AuthToken
+     */
     public AuthToken convertAuthToken(String token){
         return new AuthToken(token, key);
     }
 
-    public Authentication getAuthentication(AuthToken authToken) throws TokenValidFailedException {
 
-        if (authToken.validate()) {
+    /**
+     *
+     */
+    public Authentication getAuthentication(AuthToken authToken) {
+
+        if(authToken.validate()) {
 
             Claims claims = authToken.getTokenClaims();
+
             Collection<? extends GrantedAuthority> authorities =
-                    Arrays.stream(new String[]{ claims.get(AUTHORITIES_KEY).toString()})
+                    Arrays.stream(new String[]{claims.get(AUTHORITIES_KEY).toString()})
                             .map(SimpleGrantedAuthority::new)
                             .collect(Collectors.toList());
 

@@ -40,8 +40,6 @@ public class AuthToken {
                 .signWith(key, SignatureAlgorithm.HS256)
                 .setExpiration(expiry)
                 .compact();
-
-
     }
 
     private String createAuthToken(String id, String role, Date expiry){
@@ -53,13 +51,17 @@ public class AuthToken {
                 .compact();
     }
 
+    /**
+     * Token 검증
+     * 토큰이 키로 서명이 되고, 파싱에 에러가 없으면
+     * @return true
+     */
     public boolean validate() {
         return this.getTokenClaims() != null;
     }
 
     public Claims getTokenClaims() {
         try{
-
             return Jwts.parserBuilder()
                     .setSigningKey(key)
                     .build()
@@ -92,6 +94,7 @@ public class AuthToken {
             log.info("만료된 토큰");
             return e.getClaims();
         }
+        log.info("기간이 유효한 토큰");
         return null;
     }
 

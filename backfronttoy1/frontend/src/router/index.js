@@ -1,5 +1,9 @@
 import { createRouter, createWebHistory } from 'vue-router';
 import HomeView from '../views/HomeView.vue';
+import Router from 'vue-router';
+import Main from '@/components/Main';
+import IndexPage from '@/components/Index';
+import OauthRedirect from '@/components/oauth/Redirect';
 
 const routes = [
   {
@@ -30,6 +34,11 @@ const routes = [
     name: 'example',
     component: () => import(/* webpackChunkName: "register" */ '../views/ExampleView.vue'),
   },
+  {
+    path: '/oauth/redirect',
+    name: 'OauthRedrect',
+    component: OauthRedirect
+  }
 ];
 
 const router = createRouter({
