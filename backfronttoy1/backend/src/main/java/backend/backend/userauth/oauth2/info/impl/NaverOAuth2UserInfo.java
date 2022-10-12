@@ -32,7 +32,7 @@ public class NaverOAuth2UserInfo extends OAuth2UserInfo {
             return null;
         }
 
-        return (String) response.get("nickname");
+        return (String) response.get("name");
     }
 
     @Override
@@ -43,6 +43,6 @@ public class NaverOAuth2UserInfo extends OAuth2UserInfo {
             return null;
         }
 
-        return (String) response.get("email");
+        return (String) response.get("naveremail");
     }
 }

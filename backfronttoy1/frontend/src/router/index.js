@@ -1,9 +1,5 @@
 import { createRouter, createWebHistory } from 'vue-router';
 import HomeView from '../views/HomeView.vue';
-import Router from 'vue-router';
-import Main from '@/components/Main';
-import IndexPage from '@/components/Index';
-import OauthRedirect from '@/components/oauth/Redirect';
 
 const routes = [
   {
@@ -20,11 +16,6 @@ const routes = [
     component: () => import(/* webpackChunkName: "about" */ '../views/AboutView.vue'),
   },
   {
-    path: '/login',
-    name: 'login',
-    component: () => import(/* webpackChunkName: "login" */ '../views/LoginView.vue'),
-  },
-  {
     path: '/register',
     name: 'register',
     component: () => import(/* webpackChunkName: "register" */ '../views/RegisterView.vue'),
@@ -34,11 +25,6 @@ const routes = [
     name: 'example',
     component: () => import(/* webpackChunkName: "register" */ '../views/ExampleView.vue'),
   },
-  {
-    path: '/oauth/redirect',
-    name: 'OauthRedrect',
-    component: OauthRedirect
-  }
 ];
 
 const router = createRouter({
