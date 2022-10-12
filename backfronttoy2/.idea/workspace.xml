@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="0cbbb628-56de-471d-87f1-f3a893e58b14" name="변경" comment="">
+      <change beforePath="$PROJECT_DIR$/../backfronttoy1/oauth-login-fe" beforeDir="false" afterPath="$PROJECT_DIR$/../backfronttoy1/oauth-login-fe" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/backfronttoy2.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/jpa-buddy.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/backend/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/backend/build.gradle" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/backend/gradle/wrapper/gradle-wrapper.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/backend/gradle/wrapper/gradle-wrapper.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/backend/gradlew" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/backend/gradlew.bat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/backend/settings.gradle" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/backend/src/main/java/backend/backend/BackendApplication.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/backend/src/main/resources/application.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/backend/src/test/java/backend/backend/BackendApplicationTests.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../toy1/ex-hello-jpa" beforeDir="false" afterPath="$PROJECT_DIR$/../toy1/ex-hello-jpa" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../view/vuedongsan" beforeDir="false" afterPath="$PROJECT_DIR$/../view/vuedongsan" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../vuejs-app" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../뷰/logintoy1/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../뷰/logintoy1/README.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../뷰/logintoy1/babel.config.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../뷰/logintoy1/jsconfig.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../뷰/logintoy1/package-lock.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../뷰/logintoy1/package.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../뷰/logintoy1/public/favicon.ico" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../뷰/logintoy1/public/index.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../뷰/logintoy1/src/App.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../뷰/logintoy1/src/assets/logo.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../뷰/logintoy1/src/components/HelloWorld.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../뷰/logintoy1/src/main.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../뷰/logintoy1/src/views/home.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../뷰/logintoy1/vue.config.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../뷰/project/.editorconfig" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../뷰/project/.eslintrc.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../뷰/project/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../뷰/project/.prettiierrc" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../뷰/project/README.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../뷰/project/babel.config.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../뷰/project/jsconfig.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../뷰/project/package-lock.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../뷰/project/package.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../뷰/project/public/favicon.ico" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../뷰/project/public/index.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../뷰/project/src/App.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../뷰/project/src/assets/logo.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../뷰/project/src/components/HelloWorld.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../뷰/project/src/main.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../뷰/project/src/router/index.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../뷰/project/src/store/index.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../뷰/project/src/views/1_databiniding/DataBindingHtmlView.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../뷰/project/src/views/1_databiniding/DataBindingStringView.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../뷰/project/src/views/AboutView.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../뷰/project/src/views/HomeView.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../뷰/project/vue.config.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../뷰/project01/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../뷰/project01/README.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../뷰/project01/babel.config.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../뷰/project01/jsconfig.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../뷰/project01/package-lock.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../뷰/project01/package.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../뷰/project01/public/favicon.ico" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../뷰/project01/public/index.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../뷰/project01/src/App.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../뷰/project01/src/assets/logo.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../뷰/project01/src/components/HelloWorld.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../뷰/project01/src/main.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../뷰/project01/vue.config.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../뷰/projecttoy/.editorconfig" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../뷰/projecttoy/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../뷰/projecttoy/README.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../뷰/projecttoy/babel.config.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../뷰/projecttoy/jsconfig.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../뷰/projecttoy/package-lock.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../뷰/projecttoy/package.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../뷰/projecttoy/public/favicon.ico" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../뷰/projecttoy/public/index.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../뷰/projecttoy/src/App.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../뷰/projecttoy/src/assets/logo.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../뷰/projecttoy/src/components/HelloWorld.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../뷰/projecttoy/src/main.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../뷰/projecttoy/src/router/index.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../뷰/projecttoy/src/store/index.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../뷰/projecttoy/src/views/1_datastring/DataBindingAttributeView.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../뷰/projecttoy/src/views/1_datastring/DataBindingCheckboxView.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../뷰/projecttoy/src/views/1_datastring/DataBindingClassView.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../뷰/projecttoy/src/views/1_datastring/DataBindingHtmlView.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../뷰/projecttoy/src/views/1_datastring/DataBindingInputHtmlView.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../뷰/projecttoy/src/views/1_datastring/DataBindingListView.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../뷰/projecttoy/src/views/1_datastring/DataBindingRadioView.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../뷰/projecttoy/src/views/1_datastring/DataBindingSelectView.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../뷰/projecttoy/src/views/1_datastring/DataBindingStyleView.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../뷰/projecttoy/src/views/2_click/EventChangeView.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../뷰/projecttoy/src/views/2_click/EventClickView.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../뷰/projecttoy/src/views/2_click/EventKeyView.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../뷰/projecttoy/src/views/AboutView.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../뷰/projecttoy/src/views/HomeView.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../뷰/projecttoy/src/views/login/KakaoLogin.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../뷰/projecttoy/vue.config.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../뷰/vuedongsan" beforeDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProjectId" id="2G2hF7JiBc6QywXyUfy3hqpyUbH" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "last_opened_file_path": "/home/koseyun/IdeaProjects/study_jpa/backfront2/backend",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "project.structure.last.edited": "프로젝트",
+    "project.structure.proportion": "0.0",
+    "project.structure.side.proportion": "0.0",
+    "settings.editor.selected.configurable": "reference.settingsdialog.project.gradle"
+  }
+}]]></component>
+  <component name="RunManager">
+    <configuration name="/home/koseyun/IdeaProjects/study_jpa/backfronttoy2/backend/backend/build.gradle" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$/backend/backend/build.gradle" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list />
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>true</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Gradle./home/koseyun/IdeaProjects/study_jpa/backfronttoy2/backend/backend/build.gradle" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="애플리케이션 수준" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="디폴트 작업">
+      <changelist id="0cbbb628-56de-471d-87f1-f3a893e58b14" name="변경" comment="" />
+      <created>1665592479730</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1665592479730</updated>
+      <workItem from="1665592481030" duration="19000" />
+      <workItem from="1665592537854" duration="292000" />
+      <workItem from="1665592845074" duration="209000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+</project>
