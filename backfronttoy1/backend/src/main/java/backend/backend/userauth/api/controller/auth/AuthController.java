@@ -67,6 +67,7 @@ public class AuthController {
                 new Date(now.getTime() + refreshTokenExpiry)
         );
 
+
         // userId refresh token 으로 DB 확인
         UserRefreshToken userRefreshToken = userRefreshTokenRepository.findByUserId(userId);
         if (userRefreshToken == null) {

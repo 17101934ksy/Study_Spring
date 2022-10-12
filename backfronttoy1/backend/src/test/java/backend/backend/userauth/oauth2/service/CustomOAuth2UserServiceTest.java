@@ -3,32 +3,27 @@ package backend.backend.userauth.oauth2.service;
 import backend.backend.userauth.api.entity.user.User;
 import backend.backend.userauth.api.repository.user.UserRepository;
 import backend.backend.userauth.oauth2.entity.ProviderType;
-import backend.backend.userauth.oauth2.entity.RoleType;
-import backend.backend.userauth.oauth2.entity.UserPrincipal;
-import backend.backend.userauth.oauth2.exception.OAuthProviderMissMatchException;
 import backend.backend.userauth.oauth2.info.OAuth2UserInfo;
-import backend.backend.userauth.oauth2.info.OAuth2UserInfoFactory;
-import com.nimbusds.openid.connect.sdk.claims.UserInfo;
-import lombok.RequiredArgsConstructor;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
-import org.mockito.Mock;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.boot.test.mock.mockito.SpyBean;
 import org.springframework.security.oauth2.client.registration.ClientRegistration;
 import org.springframework.security.oauth2.client.userinfo.OAuth2UserRequest;
+import org.springframework.security.oauth2.core.AuthorizationGrantType;
+import org.springframework.security.oauth2.core.ClientAuthenticationMethod;
 import org.springframework.security.oauth2.core.user.OAuth2User;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import java.lang.reflect.Method;
-import java.time.LocalDateTime;
 
 import static backend.backend.userauth.oauth2.entity.ProviderType.GOOGLE;
 import static backend.backend.userauth.oauth2.entity.RoleType.ADMIN;
 import static java.time.LocalDateTime.now;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.BDDMockito.given;
+import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
 @ExtendWith(SpringExtension.class)
@@ -120,35 +115,6 @@ class CustomOAuth2UserServiceTest {
         assertThat(userByCreatedUser.getUserId()).isEqualTo(userInfo.getId());
         assertThat(userByCreatedUser.getEmail()).isEqualTo(userInfo.getEmail());
         assertThat(userByCreatedUser.getProfileImageUrl()).isNull();
-    }
-
-
-    @Test
-    public void procee_예외() throws Exception {
-        //given
-        Method process = copyProcess();
-        process.setAccessible(true);
-
-        try{
-//            when(clientRegistration.getRegistrationId()).thenReturn("google");
-            given(oAuth2UserRequest.getClientRegistration().getRegistrationId()).willReturn("google");
-        } catch (Exception e){
-            System.out.println("e.getMessage() = " + e.getMessage());
-        }
-//        when(oAuth2UserRequest.getClientRegistration()).thenReturn(clientRegistration);
-//        when(oAuth2UserRequest.getClientRegistration().getRegistrationId()).thenReturn("google");
-//        when(oAuth2User.getAttributes().get("sub")).thenReturn("testId1234");
-//        when(oAuth2User.getAttributes().get("name")).thenReturn("ksy");
-//        when(oAuth2User.getAttributes().get("email")).thenReturn("ttt@google.com");
-
-//        OAuth2User oAuth2UserByProcess = process.invoke(customOAuth2UserService, )
-
-
-
-        //when
-
-        //then
-
     }
 
 

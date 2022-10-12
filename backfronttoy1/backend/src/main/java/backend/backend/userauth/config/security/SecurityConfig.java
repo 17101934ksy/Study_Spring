@@ -95,7 +95,15 @@ public class SecurityConfig {
                 .userService(customOAuth2UserService)
                 .and()
                 .successHandler((AuthenticationSuccessHandler) oAuth2AuthenticationSuccessHandler())
-                .failureHandler((AuthenticationFailureHandler) oAuth2AuthenticationFailureHandler());
+                .failureHandler((AuthenticationFailureHandler) oAuth2AuthenticationFailureHandler())
+                .and()
+                .logout()
+                .logoutSuccessUrl("http://localhost:3000")
+                .and()
+                .csrf()
+                .ignoringAntMatchers("/h2-console/**")
+                .and()
+                .headers().frameOptions().disable();
 
         http.addFilterBefore(tokenAuthenticationFilter(), UsernamePasswordAuthenticationFilter.class);
 
