@@ -2,14 +2,11 @@ package backend.backend.security.config;
 
 import backend.backend.security.domain.Role;
 import backend.backend.security.dto.RestAuthenticationEntryPoint;
-import backend.backend.security.filter.HomeAccessFilter;
-import backend.backend.security.filter.RequestResponseLoggingFilter;
 import backend.backend.security.handler.OAuth2AuthenticationFailureHandler;
 import backend.backend.security.handler.OAuth2AuthenticationSuccessHandler;
 import backend.backend.security.handler.TokenAccessDeniedHandler;
 import backend.backend.security.service.CustomOauth2Service;
 import lombok.RequiredArgsConstructor;
-import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -17,13 +14,6 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.web.cors.CorsUtils;
-import org.springframework.web.filter.OncePerRequestFilter;
-
-import javax.servlet.Filter;
-
-import static backend.backend.security.domain.Role.ADMIN;
-import static backend.backend.security.domain.Role.USER;
-import static org.springframework.security.config.http.SessionCreationPolicy.STATELESS;
 
 @RequiredArgsConstructor
 @Configuration
@@ -35,26 +25,6 @@ public class SecurityConfig {
     private final TokenAccessDeniedHandler tokenAccessDeniedHandler;
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-//        http
-//                .httpBasic().disable()
-//                .formLogin().disable()
-//                .csrf().disable()
-//                .cors()
-//                .and()
-//                .sessionManagement()
-//                .sessionCreationPolicy(STATELESS)
-//                .and()
-//                .oauth2Login()
-//                .userInfoEndpoint()
-//                .userService(customOauth2Service)
-//                .and()
-//                .successHandler(oAuth2AuthenticationSuccessHandler)
-//                .failureHandler(oAuth2AuthenticationFailureHandler)
-//                .and()
-//                .authorizeRequests()
-//                .antMatchers("/login", "/refresh").permitAll()
-//                .anyRequest().hasAnyRole(USER.getKey(), ADMIN.getKey())
-//                ;
         http
                 .cors()
                 .and()
@@ -98,15 +68,15 @@ public class SecurityConfig {
 
 
     // 필터링
-    @Bean
-    public FilterRegistrationBean<HomeAccessFilter> homeAccessFilter(){
-        FilterRegistrationBean<HomeAccessFilter> registrationBean = new FilterRegistrationBean<>();
-
-        registrationBean.setFilter(new HomeAccessFilter());
-        registrationBean.addUrlPatterns("*");
-        registrationBean.setOrder(2);
-
-        return registrationBean;
-    }
+//    @Bean
+//    public FilterRegistrationBean<HomeAccessFilter> homeAccessFilter(){
+//        FilterRegistrationBean<HomeAccessFilter> registrationBean = new FilterRegistrationBean<>();
+//
+//        registrationBean.setFilter(new HomeAccessFilter());
+//        registrationBean.addUrlPatterns("*");
+//        registrationBean.setOrder(2);
+//
+//        return registrationBean;
+//    }
 
 }

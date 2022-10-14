@@ -44,21 +44,17 @@ public class OAuthAttributes {
                 .email((String) attributes.get("email"))
                 .nameAttributeKey(userNameAttributeName)
                 .authProvider(GOOGLE)
-                .build();
-
-    }
+                .build(); }
 
     private static OAuthAttributes ofNaver(String userNameAttributeName, Map<String,Object> attributes) {
         Map<String,Object> response = (Map<String,Object>) attributes.get("response");
-
         return OAuthAttributes.builder()
                 .attributes(response)
                 .name((String) response.get("name"))
                 .email((String) response.get("email"))
                 .nameAttributeKey(userNameAttributeName)
                 .authProvider(NAVER)
-                .build();
-    }
+                .build(); }
 
     private static OAuthAttributes ofKakao(String userNameAttributeName, Map<String,Object> attributes) {
         Map<String, Object> account = (Map<String, Object>) attributes.get("kakao_account");
@@ -70,8 +66,7 @@ public class OAuthAttributes {
                 .email((String) account.get("email"))
                 .nameAttributeKey(userNameAttributeName)
                 .authProvider(KAKAO)
-                .build();
-    }
+                .build(); }
 
     public Member toMemberEntity() {
         return Member.builder()

@@ -1,8 +1,7 @@
 package backend.backend.security.handler;
 
-import backend.backend.security.domain.RefreshToken;
-import backend.backend.security.domain.TokenProvider;
-import backend.backend.security.repository.TokenRepository;
+import backend.backend.jwt.domain.TokenProvider;
+import backend.backend.jwt.repository.TokenRepository;
 import backend.backend.security.dto.TokenResponse;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.RequiredArgsConstructor;
@@ -34,7 +33,10 @@ public class OAuth2AuthenticationSuccessHandler implements AuthenticationSuccess
 
         String refreshToken = tokenProvider.createRefreshToken(authentication);
         String accessToken = tokenProvider.createAccessToken(authentication);
-        TokenResponse tokenResponse = TokenResponse.of(accessToken, refreshToken);
+        TokenResponse tokenResponse = TokenResponse.builder()
+                                        .accessToken(accessToken)
+                                        .refreshToken(refreshToken)
+                                        .build();
 
 //        tokenRepository.saveRefreshToken(
 //                RefreshToken.of(refreshToken, tokenProvider.getRemainMillSeconds(refreshToken))

@@ -1,5 +1,6 @@
 package backend.backend.security.dto;
 
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
@@ -11,17 +12,9 @@ public class TokenResponse {
     private String accessToken;
     private String refreshToken;
 
-    public static TokenResponse from (TokenResponseForDto tokenResponseForDto) {
-        return new TokenResponse(tokenResponseForDto.getAccessToken(), tokenResponseForDto.getRefreshToken());
-    }
-
-    public static TokenResponse of(String accessToken,String refreshToken){
-        return new TokenResponse(accessToken,refreshToken);
-    }
-
+    @Builder
     private TokenResponse(String accessToken, String refreshToken) {
         this.accessToken = accessToken;
         this.refreshToken = refreshToken;
     }
-
 }

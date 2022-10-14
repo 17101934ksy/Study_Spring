@@ -20,18 +20,10 @@ public class OAuth2UserImpl implements OAuth2User {
         this.member = member;
     }
 
-    public static OAuth2UserImpl from(Member member) {
-        return new OAuth2UserImpl(member);
-    }
-
     public static OAuth2UserImpl of(Member member, Map<String, Object> attributes) {
-        OAuth2UserImpl oAuth2User = OAuth2UserImpl.from(member);
+        OAuth2UserImpl oAuth2User = new OAuth2UserImpl(member);
         oAuth2User.attributes = attributes;
         return oAuth2User;
-    }
-
-    public Map<String, Object> getAttributes() {
-        return attributes;
     }
 
     @Override
