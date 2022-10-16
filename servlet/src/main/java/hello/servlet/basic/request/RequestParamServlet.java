@@ -17,6 +17,8 @@ import java.util.Enumeration;
 @WebServlet(name = "requestParamServlet", urlPatterns = "/request-param")
 public class RequestParamServlet extends HttpServlet {
 
+    static int getMethodCnt = 0;
+
     @Override
     protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
@@ -43,6 +45,13 @@ public class RequestParamServlet extends HttpServlet {
             response.getWriter().write("username = " + username + "\n");
         }
 
+        System.out.println("request.getMethod() = " + request.getMethod());
+
+        if (request.getMethod().equals("GET")) {
+            getMethodCnt ++;
+        }
+
+        response.getWriter().write("getMethodCount = " + getMethodCnt);
 
     }
 
