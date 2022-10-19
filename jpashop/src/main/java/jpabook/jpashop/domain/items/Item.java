@@ -23,6 +23,15 @@ public abstract class Item {
     private int price;
     private int stockQuantity;
 
+    public Item() {
+    }
+
+    public Item(String name, int price, int stockQuantity) {
+        this.name = name;
+        this.price = price;
+        this.stockQuantity = stockQuantity;
+    }
+
     @ManyToMany(mappedBy = "items")
     private List<Category> categories = new ArrayList<>();
 

@@ -31,17 +31,5 @@ public class ItemRepository {
                 .getResultList();
     }
 
-    public List<Item> findByName(String name) {
-        return em.createQuery("select i from Item i where i.name= :name ", Item.class)
-                .getResultList();
-    }
 
-    public List<Item> findByLikeName(String name) {
-        List<Item> items =
-                em.createQuery("select i from Item i where i.name = Like :name", Item.class)
-                        .setParameter("name", "%:name%")
-                        .getResultList();
-
-        return items;
-    }
 }
