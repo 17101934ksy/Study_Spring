@@ -29,7 +29,7 @@ class MemberRepositoryTest {
     public void 회원가입() throws Exception {
         //given
         Member member = new Member();
-        member.setName("ko");
+        member.updateName("ko");
         
         //when
         Long saveId = memberService.join(member);
@@ -42,10 +42,10 @@ class MemberRepositoryTest {
     public void 중복_회원_예외() throws Exception {
         //given
         Member member1 = new Member();
-        member1.setName("ko");
+        member1.updateName("ko");
 
         Member member2 = new Member();
-        member2.setName("ko");
+        member2.updateName("ko");
 
         //when
         memberService.join(member1);

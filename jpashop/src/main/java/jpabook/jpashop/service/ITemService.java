@@ -1,5 +1,7 @@
 package jpabook.jpashop.service;
 
+import jpabook.jpashop.controller.BookForm;
+import jpabook.jpashop.domain.items.Book;
 import jpabook.jpashop.domain.items.Item;
 import jpabook.jpashop.repository.ItemRepository;
 import lombok.RequiredArgsConstructor;
@@ -26,5 +28,14 @@ public class ITemService {
 
     public Item findOne(Long id) {
         return itemRepository.findOne(id);
+    }
+
+
+    @Transactional
+    public void updateBook(Long itemId, BookForm param) {
+        //영속 상태 -> 스프링의 트랜젝셔널에 의해 플러시 영속성 변경상태 확인 더티체크
+        //commit 직전에 변경감지
+        Book findItem = (Book) itemRepository.findOne(itemId);
+        findItem.updateBook(param);
     }
 }

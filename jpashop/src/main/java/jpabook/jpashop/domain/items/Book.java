@@ -1,5 +1,7 @@
 package jpabook.jpashop.domain.items;
 
+import jpabook.jpashop.controller.BookForm;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -19,4 +21,21 @@ public class Book extends Item{
         super(name, price, quantity);
     }
 
+
+    @Builder
+    public Book(String name, int price, int stockQuantity, String author, String isbn) {
+        this.name = name;
+        this.price = price;
+        this.stockQuantity = stockQuantity;
+        this.author = author;
+        this.isbn = isbn;
+    }
+
+    public void updateBook(BookForm bookForm) {
+        this.name = bookForm.getName();
+        this.price = bookForm.getPrice();
+        this.stockQuantity = bookForm.getStockQuantity();
+        this.author = bookForm.getAuthor();
+        this.isbn = isbn;
+    }
 }

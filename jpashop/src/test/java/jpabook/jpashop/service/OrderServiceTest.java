@@ -98,8 +98,8 @@ class OrderServiceTest {
 
     private Member createMember(String name, String city, String street, String zipcode) {
         Member member =  new Member();
-        member.setName(name);
-        member.setAddress(new Address(city, street, zipcode));
+        member.updateName(name);
+        member.updateAddress(new Address(city, street, zipcode));
         em.persist(member);
         return member;
     }

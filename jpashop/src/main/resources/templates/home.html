@@ -1,18 +1,12 @@
 <!DOCTYPE HTML>
-
-<html xmlns:th="http://www.thymeleaf.org"
-      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-      layout:decorate="~{layouts/layout}">
-
-<!-- index.html 고유 CSS 추가 -->
-<!--<th:block layout:fragment="css"></th:block>-->
-
-<!-- index.html 고유 스크립트 추가 -->
-<!--<th:block layout:fragment="script">-->
-<!--    <script th:src="@{js/sample.js}"></script>-->
-<!--</th:block>-->
-
-<div layout:fragment="content" class="bg-success m-5">
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/header :: header">
+    <title>Hello</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+<div class="container">
+    <div th:replace="fragments/bodyHeader :: bodyHeader" />
     <div class="jumbotron">
         <h1>HELLO SHOP</h1>
         <p class="lead">회원 기능</p>
@@ -31,5 +25,5 @@
             <a class="btn btn-lg btn-info" href="/orders">주문 내역</a>
         </p>
     </div>
-</div>
-</html>
+    <div th:replace="fragments/footer :: footer" />
+</div> <!-- /container -->
