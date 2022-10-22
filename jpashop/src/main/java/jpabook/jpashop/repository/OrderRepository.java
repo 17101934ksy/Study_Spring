@@ -74,7 +74,19 @@ public class OrderRepository {
                 .getResultList();
     }
 
-    public List<Order> findAllWithMemberDeliveryOrderItems() {
+    public List<Order> findAllWithItems() {
+        return em.createQuery(
+                        "select o from Order o" +
+                                " join fetch o.member m" +
+                                " join fetch o.delivery d" +
+                                " join fetch o.orderItems r" +
+                                " join fetch r.item i", Order.class)
+                .getResultList();
+
+        //.setMaxResults(100) <- 페이징을 메모리에 올려놓은 후에 처리를 진행함 -> 메모리 오버플로우 발생 !!!
+    }
+
+    public List<Order> findAllWithDistinctItems() {
         return em.createQuery(
                         "select distinct o from Order o" +
                                 " join fetch o.member m" +

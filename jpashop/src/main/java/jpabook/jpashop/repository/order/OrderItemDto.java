@@ -14,5 +14,8 @@ public class OrderItemDto {
         this.itemName = orderItem.getItem().getName();
         this.orderPrice = orderItem.getOrderPrice();
         this.count = orderItem.getCount();
+        System.out.println("================================================");
+        System.out.println(" order Item을 통과합니다 ");
+        System.out.println("================================================");
     }
 }

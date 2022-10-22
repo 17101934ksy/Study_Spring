@@ -30,5 +30,10 @@ public class OrderDto {
         this.orderItems = order.getOrderItems().stream()
                 .map(OrderItemDto::new)
                 .collect(Collectors.toList());
+
+        System.out.println("======================================");
+        System.out.println(" OrderDto를 생성합니다 ");
+        System.out.println("order.getId() = " + order.getId());
+        System.out.println("======================================");
     }
 }
