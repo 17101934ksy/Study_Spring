@@ -98,4 +98,14 @@ public class OrderRepository {
         //.setMaxResults(100) <- 페이징을 메모리에 올려놓은 후에 처리를 진행함 -> 메모리 오버플로우 발생 !!!
     }
 
+    public List<Order> findAllWithMemberDelivery(int offset, int limit) {
+
+        return em.createQuery(
+                "select o from Order o" +
+                        " join fetch o.member m" +
+                        " join fetch o.delivery d", Order.class)
+                .setFirstResult(offset)
+                .setMaxResults(limit)
+                .getResultList();
+    }
 }
