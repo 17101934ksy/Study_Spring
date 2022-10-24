@@ -1,6 +1,5 @@
 package study.datajpa.repository;
 
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -8,6 +7,8 @@ import org.springframework.transaction.annotation.Transactional;
 import study.datajpa.domain.Member;
 import study.datajpa.exception.NotMemberException;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 import static org.assertj.core.api.Assertions.*;
@@ -57,6 +58,60 @@ class MemberRepositoryTest {
 
         //then
         assertEquals("member not found", exception.getMessage());
+    }
+
+    @Test
+    public void 리스트_조회검증() throws Exception {
+        //given
+        List<Member> members = memberCreateAndSave();
+
+        //when
+        List<Member> allMembers = memberRepository.findAll();
+        long memberCount = memberRepository.count();
+
+        //then
+        assertThat(allMembers.size()).isEqualTo(2);
+        assertThat(memberCount).isEqualTo(2);
+
+    }
+
+    @Test
+    public void 삭제_검증() throws Exception {
+        //given
+        List<Member> members = memberCreateAndSave();
+
+        //when
+        memberRepository.delete(members.get(0));
+        long count = memberRepository.count();
+
+        //then
+        assertThat(count).isEqualTo(1);
+
+    }
+
+
+    private static Member createMember(String name) {
+        Member member = Member
+                .builder()
+                .username(name)
+                .build();
+
+        return member;
+    }
+
+    private List<Member> memberCreateAndSave() {
+        List<Member> allMembers = new ArrayList<>();
+
+        Member member1 = createMember("ko");
+        Member member2 = createMember("se");
+
+        memberRepository.save(member1);
+        memberRepository.save(member2);
+
+        allMembers.add(member1);
+        allMembers.add(member2);
+
+        return allMembers;
     }
 
     private Optional<Member> findMemberOrThrowError(long id) {
