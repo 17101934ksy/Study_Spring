@@ -1,6 +1,11 @@
 package jpabook.jpashop.repository;
 
+import com.querydsl.core.types.dsl.BooleanExpression;
+import com.querydsl.jpa.impl.JPAQueryFactory;
 import jpabook.jpashop.domain.Order;
+import jpabook.jpashop.domain.OrderStatus;
+import jpabook.jpashop.domain.QMember;
+import jpabook.jpashop.domain.QOrder;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
 import org.springframework.util.StringUtils;
@@ -98,6 +103,7 @@ public class OrderRepository {
         //.setMaxResults(100) <- 페이징을 메모리에 올려놓은 후에 처리를 진행함 -> 메모리 오버플로우 발생 !!!
     }
 
+
     public List<Order> findAllWithMemberDelivery(int offset, int limit) {
 
         return em.createQuery(
@@ -107,5 +113,26 @@ public class OrderRepository {
                 .setFirstResult(offset)
                 .setMaxResults(limit)
                 .getResultList();
+    }
+
+    public List<Order> findAll(OrderSearch orderSearch) {
+        QOrder order = QOrder.order;
+        QMember member = QMember.member;
+
+        JPAQueryFactory query = new JPAQueryFactory(em);
+        return query.select(order)
+                    .from(order)
+                    .join(order.member, member)
+                    .where(statusEq((orderSearch.getOrderStatus())))
+                    .limit(1000)
+                    .fetch();
+
+    }
+
+    private BooleanExpression statusEq(OrderStatus statusCond) {
+        if (statusCond == null) {
+            return null;
+        }
+        return QOrder.order.status.eq(statusCond);
     }
 }

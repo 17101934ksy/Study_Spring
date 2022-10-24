@@ -1,15 +1,11 @@
 package jpabook.jpashop.repository;
 
-import com.sun.nio.sctp.IllegalReceiveException;
 import jpabook.jpashop.domain.Member;
 import jpabook.jpashop.service.MemberService;
-import org.assertj.core.api.Assertions;
-import org.junit.Assert;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.annotation.Rollback;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -19,11 +15,12 @@ import static org.junit.jupiter.api.Assertions.*;
 @ExtendWith(SpringExtension.class)
 @SpringBootTest
 @Transactional
-class MemberRepositoryTest {
+class MemberOldRepositoryTest {
 
     @Autowired MemberService memberService;
 
-    @Autowired MemberRepository memberRepository;
+    @Autowired
+    MemberOldRepository memberOldRepository;
 
     @Test
     public void 회원가입() throws Exception {
@@ -35,7 +32,7 @@ class MemberRepositoryTest {
         Long saveId = memberService.join(member);
 
         //then
-        assertEquals(member, memberRepository.findOne(saveId));
+        assertEquals(member, memberOldRepository.findOne(saveId));
     }
     
     @Test

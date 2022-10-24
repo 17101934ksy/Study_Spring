@@ -1,14 +1,15 @@
-package jpabook.jpashop.repository;
+package study.datajpa.repository;
 
-import jpabook.jpashop.domain.Member;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
+import study.datajpa.domain.Member;
 
-import java.util.List;
+import java.util.Optional;
 
 @Repository
 public interface MemberRepository extends JpaRepository<Member, Long> {
 
-    List<Member> findByName(String name);
+    @Override
+    Optional<Member> findById(Long id);
 
 }

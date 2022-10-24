@@ -1,11 +1,9 @@
 package jpabook.jpashop.service;
 
 import jpabook.jpashop.domain.Member;
-import jpabook.jpashop.repository.MemberRepository;
-import lombok.AllArgsConstructor;
+import jpabook.jpashop.repository.MemberOldRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -20,7 +18,7 @@ import java.util.List;
 
 public class MemberService {
 
-    private final MemberRepository memberRepository;
+    private final MemberOldRepository memberOldRepository;
 //
 //    // @Autowired 생성자가 하나일 경우에는 Autowired 생략해도 된다.
 //    public MemberService(MemberRepository memberRepository){
@@ -33,14 +31,14 @@ public class MemberService {
     @Transactional(readOnly = false)
     public Long join(Member member){
         validateDuplicateMember(member);
-        memberRepository.save(member);
+        memberOldRepository.save(member);
         return member.getId();
     }
 
 
     // member의 name에 유니크 제약조건을 달아주면 더 안전하다
     private void validateDuplicateMember(Member member) {
-        List<Member> findMembers = memberRepository.findByName(member.getName());
+        List<Member> findMembers = memberOldRepository.findByName(member.getName());
         if (!findMembers.isEmpty()){
             throw new IllegalStateException("이미 존재하는 회원입니다.");
         }
@@ -49,17 +47,17 @@ public class MemberService {
 
     //회원 전체 조회
     public List<Member> findMembers() {
-        return memberRepository.findAll();
+        return memberOldRepository.findAll();
     }
 
     public Member findOne(Long memberId){
-        return memberRepository.findOne(memberId);
+        return memberOldRepository.findOne(memberId);
     }
 
     @Transactional
     public void update(Long id, String name) {
         log.info("member update test1");
-        Member member = memberRepository.findOne(id);
+        Member member = memberOldRepository.findOne(id);
 
         log.info("member updateName");
         member.updateName(name);

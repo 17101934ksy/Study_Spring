@@ -1,21 +1,15 @@
 package jpabook.jpashop.api;
 
-import jpabook.jpashop.domain.Address;
-import jpabook.jpashop.domain.Order;
-import jpabook.jpashop.domain.OrderItem;
-import jpabook.jpashop.domain.OrderStatus;
 import jpabook.jpashop.repository.OrderRepository;
 import jpabook.jpashop.repository.OrderSearch;
-import jpabook.jpashop.repository.OrderSimpleDto;
 import jpabook.jpashop.repository.order.OrderDto;
+import jpabook.jpashop.repository.order.simplequery.OrderQueryDto;
+import jpabook.jpashop.repository.order.simplequery.OrderQueryRepository;
 import lombok.*;
-import org.aspectj.weaver.ast.Or;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import javax.persistence.EntityManager;
-import java.time.LocalDateTime;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -24,6 +18,7 @@ import java.util.stream.Collectors;
 public class OrderApiController {
 
     private final OrderRepository orderRepository;
+    private final OrderQueryRepository orderQueryRepository;
 
 //    @GetMapping("/api/v2/orders-one")
 //    public OrderResult ordersV2One(@RequestParam("orderId") Long id) {
