@@ -5,9 +5,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.transaction.annotation.Transactional;
 import study.datajpa.domain.Member;
+import study.datajpa.domain.Team;
 import study.datajpa.exception.NotMemberException;
+import study.datajpa.memberdto.MemberDto;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 
@@ -19,6 +22,7 @@ import static org.junit.jupiter.api.Assertions.*;
 class MemberRepositoryTest {
 
     @Autowired MemberRepository memberRepository;
+    @Autowired TeamRepository teamRepository;
 
     @Test
     public void 멤버저장() throws Exception {
@@ -89,7 +93,104 @@ class MemberRepositoryTest {
 
     }
 
+    @Test
+    public void findMembers_query() throws Exception {
+        //given
+        Member m1 = new Member("AAA", 10);
+        Member m2 = new Member("BBB", 10);
 
+        //when
+        memberRepository.save(m1);
+        memberRepository.save(m2);
+
+        //then
+        List<Member> result = memberRepository.findMembers("AAA", 10);
+        assertThat(result.get(0).getUsername()).isEqualTo("AAA");
+    }
+
+    @Test
+    public void findUsernameList() throws Exception {
+        //given
+        Member m1 = new Member("AAA", 10);
+        Member m2 = new Member("BBB", 10);
+
+        //when
+        memberRepository.save(m1);
+        memberRepository.save(m2);
+
+        //then
+        Optional<List<String>> usernameList = memberRepository.findUsernameList();
+
+        List<String> memberUsernames = usernameList.orElseThrow(() -> {
+            throw new NotMemberException();
+        });
+        assertThat(memberUsernames.size()).isEqualTo(2);
+    }
+
+    @Test
+    public void findMemberDto() throws Exception {
+        //given
+        Team t1 = new Team("team1");
+        Team t2 = new Team("team2");
+
+        teamRepository.save(t1);
+        teamRepository.save(t2);
+        teamRepository.flush();
+
+        Member m1 = new Member("AAA", 10);
+        Member m2 = new Member("BBB", 10);
+        Member m3 = new Member("CCC", 30);
+        m1.updateTeam(t1);
+        m2.updateTeam(t2);
+
+        memberRepository.save(m1);
+        memberRepository.save(m2);
+        memberRepository.save(m3);
+
+        //when
+        Optional<List<MemberDto>> memberDto = memberRepository.findMemberDto();
+        List<MemberDto> memberDtos = memberDto.orElseThrow(() -> {
+            throw new NotMemberException();
+        });
+
+        //then
+        assertThat(memberDtos.size()).isEqualTo(2);
+    }
+
+    @Test
+    public void findNames() throws Exception {
+        //given
+        List<Member> members = memberCreateAndSave();
+        Member member1 = new Member("name1", 15);
+        memberRepository.save(member1);
+
+        List<String> names = new ArrayList<>();
+
+        for (Member member : members) {
+            names.add(member.getUsername());
+        }
+
+        //when
+        Optional<List<Member>> findMembersByNames = memberRepository.findByNames(names);
+        List<Member> findMembers = findMembersByNames.orElseThrow(
+                () -> {
+                    throw new NotMemberException();
+                });
+
+        Optional<List<Member>> arraysFindNames = memberRepository.findByNames(Arrays.asList("ko", "se"));
+        List<Member> arraysFindMembers = arraysFindNames.orElseThrow(
+                () -> {
+                    throw new NotMemberException();
+                });
+
+
+        //then
+        assertThat(findMembers.size()).isEqualTo(2);
+        assertThat(arraysFindMembers.size()).isEqualTo(2);
+    }
+    
+    
+    
     private static Member createMember(String name) {
         Member member = Member
                 .builder()
