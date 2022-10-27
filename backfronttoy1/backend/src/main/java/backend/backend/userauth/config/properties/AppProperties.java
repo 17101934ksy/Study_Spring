@@ -19,6 +19,7 @@ public class AppProperties {
     private final OAuth2 oauth2 = new OAuth2();
 
     @Getter
+    @Setter
     @NoArgsConstructor
     @AllArgsConstructor
     public static class Auth {

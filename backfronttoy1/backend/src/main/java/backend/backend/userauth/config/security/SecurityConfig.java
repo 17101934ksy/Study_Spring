@@ -1,30 +1,26 @@
 package backend.backend.userauth.config.security;
 
-import backend.backend.userauth.api.repository.user.UserRefreshTokenRepository;
+import backend.backend.userauth.api.member.infra.repository.UserRefreshTokenRepository;
 import backend.backend.userauth.config.properties.AppProperties;
 import backend.backend.userauth.config.properties.CorsProperties;
-import backend.backend.userauth.oauth2.entity.RoleType;
-import backend.backend.userauth.oauth2.exception.RestAuthenticationEntryPoint;
-import backend.backend.userauth.oauth2.filter.TokenAuthenticationFilter;
-import backend.backend.userauth.oauth2.handler.OAuth2AuthenticationFailureHandler;
-import backend.backend.userauth.oauth2.handler.OAuth2AuthenticationSuccessHandler;
-import backend.backend.userauth.oauth2.handler.TokenAccessDeniedHandler;
-import backend.backend.userauth.oauth2.repository.OAuth2AuthorizationRequestBasedOnCookieRepository;
-import backend.backend.userauth.oauth2.service.CustomOAuth2UserService;
-import backend.backend.userauth.oauth2.service.CustomUserDetailsService;
-import backend.backend.userauth.oauth2.token.AuthTokenProvider;
+import backend.backend.userauth.oauth2.domain.RoleType;
+import backend.backend.userauth.oauth2.presentation.exception.RestAuthenticationEntryPoint;
+import backend.backend.userauth.oauth2.presentation.filter.TokenAuthenticationFilter;
+import backend.backend.userauth.oauth2.presentation.handler.OAuth2AuthenticationFailureHandler;
+import backend.backend.userauth.oauth2.presentation.handler.OAuth2AuthenticationSuccessHandler;
+import backend.backend.userauth.oauth2.presentation.handler.TokenAccessDeniedHandler;
+import backend.backend.userauth.oauth2.intra.repository.OAuth2AuthorizationRequestBasedOnCookieRepository;
+import backend.backend.userauth.oauth2.application.service.CustomOAuth2UserService;
+import backend.backend.userauth.oauth2.application.service.CustomUserDetailsService;
+import backend.backend.userauth.oauth2.domain.token.AuthTokenProvider;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.security.access.intercept.AbstractSecurityInterceptor;
-import org.springframework.security.authentication.AuthenticationManager;
-import org.springframework.security.config.BeanIds;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
-import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.oauth2.client.web.AuthorizationRequestRepository;
 import org.springframework.security.oauth2.core.endpoint.OAuth2AuthorizationRequest;
 import org.springframework.security.web.SecurityFilterChain;
@@ -35,9 +31,9 @@ import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.CorsUtils;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 
-import javax.servlet.Filter;
 import java.util.Arrays;
 
+@Slf4j
 @Configuration
 @RequiredArgsConstructor
 public class SecurityConfig {
@@ -146,6 +142,7 @@ public class SecurityConfig {
      */
     @Bean
     public OAuth2AuthenticationSuccessHandler oAuth2AuthenticationFailureHandler() {
+        log.info("test");
         return new OAuth2AuthenticationSuccessHandler(
                 tokenProvider,
                 appProperties,
@@ -159,6 +156,7 @@ public class SecurityConfig {
      */
     @Bean
     public OAuth2AuthenticationFailureHandler oAuth2AuthenticationSuccessHandler() {
+        log.info("test2");
         return new OAuth2AuthenticationFailureHandler(oAuth2AuthorizationRequestBasedOnCookieRepository());
     }
 
