@@ -1,5 +1,0 @@
-1664854897820|2|statement|connection 36|url jdbc:h2:mem:0acd432a-f6ef-4352-9c07-c0fdb61fe5b1|drop table if exists member CASCADE |drop table if exists member CASCADE 
-1664854897822|1|statement|connection 36|url jdbc:h2:mem:0acd432a-f6ef-4352-9c07-c0fdb61fe5b1|drop table if exists test_problem CASCADE |drop table if exists test_problem CASCADE 
-1664854897823|0|statement|connection 36|url jdbc:h2:mem:0acd432a-f6ef-4352-9c07-c0fdb61fe5b1|drop table if exists test_save CASCADE |drop table if exists test_save CASCADE 
-1664854897824|0|statement|connection 36|url jdbc:h2:mem:0acd432a-f6ef-4352-9c07-c0fdb61fe5b1|drop table if exists test_space CASCADE |drop table if exists test_space CASCADE 
-1664854897824|0|statement|connection 36|url jdbc:h2:mem:0acd432a-f6ef-4352-9c07-c0fdb61fe5b1|drop sequence if exists hibernate_sequence|drop sequence if exists hibernate_sequence
