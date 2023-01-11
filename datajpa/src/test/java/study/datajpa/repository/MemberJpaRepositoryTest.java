@@ -3,8 +3,12 @@ package study.datajpa.repository;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.transaction.annotation.Transactional;
 import study.datajpa.domain.Member;
+import study.datajpa.dto.MemberDto;
 import study.datajpa.exception.NotMemberException;
 
 import java.util.ArrayList;
@@ -17,6 +21,9 @@ import static org.assertj.core.api.Assertions.assertThat;
 class MemberJpaRepositoryTest {
 
     @Autowired MemberJpaRepository memberJpaRepository;
+    @Autowired
+    private MemberRepository memberRepository;
+
 
     @Test
     public void 멤버저장() throws Exception {
@@ -145,5 +152,90 @@ class MemberJpaRepositoryTest {
         assertThat(result.get(0).getAge()).isEqualTo(20);
         assertThat(result.size()).isEqualTo(1);
     }
+
+    @Test
+    public void returnType() {
+        Member m1 = new Member("AAA", 10);
+        Member m2 = new Member("BBB", 20);
+        memberRepository.save(m1);
+        memberRepository.save(m2);
+
+        Member findMember = memberRepository.findMemberByUsername("AAA");
+
+
+    }
+
+    //interface
+    @Test
+    public void paging() {
+        //given
+        memberRepository.save(new Member("member1", 10));
+        memberRepository.save(new Member("member2", 10));
+        memberRepository.save(new Member("member3", 10));
+        memberRepository.save(new Member("member4", 10));
+        memberRepository.save(new Member("member5", 10));
+
+        int age = 10;
+        PageRequest pageRequest = PageRequest.of(0, 3, Sort.by(Sort.Direction.DESC, "username"));
+
+        //when
+        Page<Member> page = memberRepository.findByAge(age, pageRequest);
+        Page<MemberDto> toMap = page.map(m -> new MemberDto(m.getId(), m.getUsername(), null));
+
+        // then
+        List<Member> content = page.getContent();
+
+        assertThat(content.size()).isEqualTo(3);
+        assertThat(page.getTotalElements()).isEqualTo(5);
+        assertThat(page.getNumber()).isEqualTo(0);
+        assertThat(page.getTotalPages()).isEqualTo(2);
+        assertThat(page.isFirst()).isTrue();
+        assertThat(page.hasNext()).isTrue();
+    }
+
+//    @Test
+//    void slice() {
+//        //given
+//        memberRepository.save(new Member("member1", 10));
+//        memberRepository.save(new Member("member2", 10));
+//        memberRepository.save(new Member("member3", 10));
+//        memberRepository.save(new Member("member4", 10));
+//        memberRepository.save(new Member("member5", 10));
+//
+//        int age = 10;
+//        PageRequest pageRequest = PageRequest.of(0, 3, Sort.by(Sort.Direction.DESC, "username"));
+//
+//        //when
+//        Slice<Member> page = memberRepository.findByAge(age, pageRequest);
+//
+//        // then
+//        List<Member> content = page.getContent();
+//
+//        assertThat(content.size()).isEqualTo(3);
+//        assertThat(page.hasNext()).isTrue();
+//    }
+    // slice 적용 원칙
+    // slice는 요청할 때, 3개를 요청하면 3 + 1 해서 4개를 요청함
+    // total query를 날리지 않음
+
+
+    @Test
+    public void bulkUpdate() {
+        //given
+        memberJpaRepository.save(new Member("member1", 19));
+        memberJpaRepository.save(new Member("member2", 19));
+        memberJpaRepository.save(new Member("member3", 19));
+        memberJpaRepository.save(new Member("member4", 20));
+        memberJpaRepository.save(new Member("member5", 40));
+
+        //when
+        int resultCount = memberJpaRepository.bulkAgePlus(20);
+
+        //then
+        assertThat(resultCount).isEqualTo(2);
+    }
+
+
+
 
 }

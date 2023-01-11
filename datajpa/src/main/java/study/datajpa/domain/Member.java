@@ -4,9 +4,12 @@ import lombok.*;
 
 import javax.persistence.*;
 
+import static lombok.AccessLevel.PROTECTED;
+
 @Entity
 @Getter
-@NoArgsConstructor(access = AccessLevel.PROTECTED)
+@AllArgsConstructor
+@NoArgsConstructor(access = PROTECTED)
 @ToString(of = {"id", "username", "age"})
 public class Member {
 
@@ -36,6 +39,8 @@ public class Member {
             updateTeam(team);
         }
     }
+
+
 
     public void updateUsername(String username) {
         this.username = username;

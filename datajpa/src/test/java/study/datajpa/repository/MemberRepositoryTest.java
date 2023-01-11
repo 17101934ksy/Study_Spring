@@ -7,7 +7,7 @@ import org.springframework.transaction.annotation.Transactional;
 import study.datajpa.domain.Member;
 import study.datajpa.domain.Team;
 import study.datajpa.exception.NotMemberException;
-import study.datajpa.memberdto.MemberDto;
+import study.datajpa.dto.MemberDto;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -228,4 +228,5 @@ class MemberRepositoryTest {
 
         return member;
     }
+
 }

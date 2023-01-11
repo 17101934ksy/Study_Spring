@@ -1,4 +1,4 @@
-package study.datajpa.memberdto;
+package study.datajpa.dto;
 
 import lombok.Data;
 
