@@ -7,7 +7,11 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.transaction.annotation.Transactional;
 import study.datajpa.repository.MemberRepository;
 
+import javax.persistence.EntityManager;
+import java.time.LocalDateTime;
 import java.util.Optional;
+
+import static org.assertj.core.api.Assertions.assertThat;
 
 @SpringBootTest
 @Transactional
@@ -15,6 +19,9 @@ class MemberTest {
 
     @Autowired
     MemberRepository memberRepository;
+
+    @Autowired
+    EntityManager em;
 
     @Test
     public void 팀_처음_설정하기() throws Exception {
@@ -29,7 +36,7 @@ class MemberTest {
         Member findMember = saveAndFindMember(member);
 
         //then
-        Assertions.assertThat(findMember.getTeam().getName()).isEqualTo("kia");
+        assertThat(findMember.getTeam().getName()).isEqualTo("kia");
 
     }
 
@@ -50,8 +57,8 @@ class MemberTest {
         memberB.updateTeam(teamB);
 
         //then
-        Assertions.assertThat(teamA.getMembers().size()).isEqualTo(0);
-        Assertions.assertThat(teamB.getMembers().size()).isEqualTo(2);
+        assertThat(teamA.getMembers().size()).isEqualTo(0);
+        assertThat(teamB.getMembers().size()).isEqualTo(2);
 
     }
 
@@ -90,6 +97,25 @@ class MemberTest {
         System.out.println("optionalS.toString() = " + optionalS.toString());
         System.out.println("===================================================");
         
-        
     }
+
+    @Test
+    public void JpaEventBaseEntity() throws Exception {
+        //given
+        Member member = new Member("member1", 10);
+        memberRepository.save(member);
+
+        Thread.sleep(100);
+        member.updateUsername("member2");
+
+        em.flush();
+        em.clear();
+
+        //when
+        Member findMember = memberRepository.findById(member.getId()).get();
+
+        //then
+        assertThat(findMember.getCreatedDate()).isBefore(LocalDateTime.now());
+    }
+
 }
