@@ -1,25 +1,29 @@
 package study.querydsl.basic;
 
+import com.querydsl.core.BooleanBuilder;
 import com.querydsl.core.QueryResults;
 import com.querydsl.core.Tuple;
-import com.querydsl.core.types.Expression;
+import com.querydsl.core.types.ExpressionUtils;
+import com.querydsl.core.types.Predicate;
+import com.querydsl.core.types.Projections;
+import com.querydsl.core.types.dsl.BooleanExpression;
 import com.querydsl.core.types.dsl.CaseBuilder;
 import com.querydsl.core.types.dsl.Expressions;
 import com.querydsl.jpa.JPAExpressions;
-import com.querydsl.jpa.JPQLQuery;
 import com.querydsl.jpa.JPQLQueryFactory;
 import com.querydsl.jpa.impl.JPAQueryFactory;
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.transaction.annotation.Transactional;
 import study.querydsl.domain.Member;
 import study.querydsl.domain.QMember;
-import study.querydsl.domain.QTeam;
 import study.querydsl.domain.Team;
+import study.querydsl.dto.QQueryProjectionUserDto;
+import study.querydsl.dto.QueryMemberDto;
+import study.querydsl.dto.QueryProjectionUserDto;
+import study.querydsl.dto.QueryUserDto;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -27,9 +31,9 @@ import javax.persistence.PersistenceUnit;
 
 import java.util.List;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 import static com.querydsl.jpa.JPAExpressions.*;
+import static org.assertj.core.api.Assertions.as;
 import static org.assertj.core.api.Assertions.assertThat;
 import static study.querydsl.domain.QMember.member;
 import static study.querydsl.domain.QTeam.team;
@@ -577,7 +581,7 @@ public class QueryDslBasicTest {
         }
     }
 
-    // stringValue() 효과적이다 
+    // stringValue() 효과적이다
     @Test
     public void concat() {
 
@@ -592,6 +596,187 @@ public class QueryDslBasicTest {
             System.out.println("result = " + result);
         }
     }
+    
+    @Test
+    public void simpleProjection() throws Exception {
+        List<String> result = query
+                .select(member.username)
+                .from(member)
+                .fetch();
+    }
+    
+    @Test
+    public void tupleProjection() throws Exception {
+        List<Tuple> result = query
+                .select(member.username, member.age)
+                .from(member)
+                .fetch();
+
+        for (Tuple tuple : result) {
+            System.out.println("username = " + tuple.get(member.username));
+            System.out.println("age = " + tuple.get(member.age));
+        }
+    }
+
+    @Test
+    public void findDtoBySetter() throws Exception {
+        List<QueryMemberDto> result = query
+                .select(Projections.bean(QueryMemberDto.class,
+                        member.username,
+                        member.age))
+                .from(member)
+                .fetch();
+    }
+
+    @Test
+    public void findDtoByField() throws Exception {
+        List<QueryMemberDto> result = query
+                .select(Projections.fields(QueryMemberDto.class,
+                        member.username,
+                        member.age))
+                .from(member)
+                .fetch();
+    }
+
+    @Test
+    public void findUserDtoByField() throws Exception {
+        List<QueryUserDto> result = query
+                .select(Projections.fields(QueryUserDto.class,
+                        member.username.as("name"),
+                        member.age))
+                .from(member)
+                .fetch();
+    }
+
+    @Test
+    public void findDtoByConstructor() throws Exception {
+        List<QueryMemberDto> result = query
+                .select(
+                        Projections.constructor(
+                        QueryMemberDto.class,
+                        member.username,
+                        member.age))
+                .from(member)
+                .fetch();
+    }
+
+    @Test
+    public void findQueryUserDto() throws Exception {
+        List<QueryUserDto> result = query
+                .select(
+                        Projections.constructor(
+                                QueryUserDto.class,
+                                member.username,
+                                member.age))
+                .from(member)
+                .fetch();
+
+        for (QueryUserDto queryUserDto : result) {
+            System.out.println("queryUserDto = " + queryUserDto.getName());
+        }
+    }
+
+
+    @Test
+    public void findUserDtoBySubQuery() throws Exception {
+        //given
+        QMember ms = new QMember("memberSub");
+
+        //when
+        List<QueryUserDto> result = query
+                .select(
+                        Projections.fields(
+                                QueryUserDto.class,
+                                member.username.as("name"),
+                                ExpressionUtils.as(
+                                        select(ms.age.max())
+                                                .from(ms), "age")))
+                .from(member)
+                .fetch();
+        //then
+        for (QueryUserDto queryUserDto : result) {
+            System.out.println("queryUserDto = " + queryUserDto.getName());
+        }
+    }
+
+    @Test
+    public void findDtoByQueryProjection() throws Exception {
+        List<QueryProjectionUserDto> result = query
+                .select(
+                        new QQueryProjectionUserDto(
+                        member.username,
+                        member.age
+                ))
+                .from(member)
+                .fetch();
+
+        for (QueryProjectionUserDto queryProjectionUserDto : result) {
+            System.out.println("queryProjectionUserDto.getUsername() = " + queryProjectionUserDto.getUsername());
+            System.out.println("queryProjectionUserDto.getAge() = " + queryProjectionUserDto.getAge());
+        }
+    }
+
+    @Test
+    public void dynamicQueryBooleanBuilder() throws Exception {
+        //given
+        String usernameParam = "member1";
+        Integer ageParam = null;
+
+        //when
+        List<Member> result = searchMember1(usernameParam, ageParam);
+
+        //then
+        assertThat(result.size()).isEqualTo(1);
+    }
+
+    private List<Member> searchMember1(String usernameCond, Integer ageCond) {
+
+        BooleanBuilder builder = new BooleanBuilder();
+
+        if (usernameCond != null) {
+            builder.and(member.username.eq(usernameCond));
+        }
+
+        if (ageCond != null) {
+            builder.and(member.age.eq(ageCond));
+        }
+
+        return query
+                .selectFrom(member)
+                .where(builder)
+                .fetch();
+    }
+
+    @Test
+    public void dynamicQueryWhereParam() {
+        String usernameParam = "member1";
+        Integer ageParam = null;
+
+        //when
+        List<Member> result = searchMember2(usernameParam, ageParam);
+
+    }
+
+    private List<Member> searchMember2(String usernameCond, Integer ageCond) {
+
+        return query
+                .selectFrom(member)
+                .where(usernameEq(usernameCond), ageEq(ageCond))
+                .fetch();
+    }
+
+    private BooleanExpression usernameEq(String usernameCond) {
+        return usernameCond != null ? member.username.eq(usernameCond) : null;
+    }
+
+    private BooleanExpression ageEq(Integer ageCond) {
+        return ageCond != null ? member.age.eq(ageCond) : null;
+    }
+
+    private BooleanExpression usernameEqAndAgeEq(String usernameCond, Integer ageCond) {
+        return usernameEq(usernameCond).and(ageEq(ageCond));
+    }
+
 
     static class MemberDto {
         private String username;
@@ -634,5 +819,70 @@ public class QueryDslBasicTest {
         }
     }
 
+
+    @Test
+    public void bulkUpdate() throws Exception {
+
+        long count = query
+                .update(member)
+                .set(member.username, "비회원")
+                .where(member.age.lt(28))
+                .execute();
+
+        em.flush();
+        em.clear();
+    }
+
+    @Test
+    public void bulkAdd() throws Exception {
+
+        long count = query
+                .update(member)
+                .set(member.age, member.age.add(1))
+                .set(member.age, member.age.multiply(2))
+                .execute();
+
+        em.flush();
+        em.clear();
+    }
+
+    @Test
+    public void bulkDelete() throws Exception {
+        long count = query
+                .delete(member)
+                .where(member.age.lt(30))
+                .execute();
+
+        em.flush();
+        em.clear();
+    }
+    @Test
+    public void sqlFunction() throws Exception {
+        List<String> result = query
+                .select(
+                        Expressions
+                                .stringTemplate("function('replace', {0}, {1}, {2})",
+                                        member.username, "member", "M"))
+                .from(member)
+                .fetch();
+
+        for (String s : result) {
+            System.out.println("s = " + s);
+        }
+    }
+
+    @Test
+    public void sqlFunction2() throws Exception {
+        List<String> result = query
+                .select(member.username)
+                .from(member)
+//                .where(member.username.eq(Expressions.stringTemplate("function('lower', {0}", member.username)))
+                .where(member.username.eq(member.username.lower()))
+                .fetch();
+
+        for (String s : result) {
+            System.out.println("s = " + s);
+        }
+    }
 
 }
